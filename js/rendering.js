@@ -36,6 +36,9 @@ function setup_rendering() {
 		stage.addChild(arrows[a].sprite);
 	}
 
+	stage.addChild(heart.sprite);
+	stage.addChild(heart.shield_sprite);
+
 	// add the renderer view element to the DOM
 	document.body.appendChild(renderer.view);
 

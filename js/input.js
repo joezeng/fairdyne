@@ -6,16 +6,16 @@ function handleKeyInput(key, dir) {
 		key_is_down[key] = true;
 		switch(key) {
 			case "left":
-				heart.shield_dir = 2;
+				heart.setShieldDir(2);
 				break;
 			case "right":
-				heart.shield_dir = 4;
+				heart.setShieldDir(4);
 				break;
 			case "up":
-				heart.shield_dir = 3;
+				heart.setShieldDir(3);
 				break;
 			case "down":
-				heart.shield_dir = 1;
+				heart.setShieldDir(1);
 				break;
 			default:
 				break;
