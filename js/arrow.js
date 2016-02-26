@@ -1,4 +1,4 @@
-var arrow_texture = new PIXI.Texture.fromImage("img/arrow.png");
+var arrow_texture;
 
 const turntype_rotation = [0, 1, 2, 2, 3];
 const turntype_tints = [0x2fd0ff, 0xffffff, 0xffdf23, 0xffdf23, 0xffffff];
@@ -32,8 +32,6 @@ function Arrow (props) {
 
 	this.sprite.rotation = Math.PI / 2 * (this.direction + turntype_rotation[this.turntype] + 2);
 	this.sprite.tint = turntype_tints[this.turntype];
-
-	this.updatePosition();
 
 }
 

@@ -1,5 +1,5 @@
-var heart_texture = new PIXI.Texture.fromImage("img/heart.png");
-var shield_texture = new PIXI.Texture.fromImage("img/shield.png");
+var heart_texture;
+var shield_texture;
 
 var heart_colours = {
 	"red": 0xff0000,
@@ -82,4 +82,4 @@ Heart.prototype.takeDamage = function(damage) {
 
 }
 
-var heart = new Heart();
+var heart;
