@@ -1,5 +1,6 @@
 var heart_texture;
 var shield_texture;
+var hp_text;
 
 var heart_colours = {
 	"red": 0xff0000,
@@ -42,8 +43,15 @@ function Heart() {
 	this.shield_sprite.position.x = this.pos_x;
 	this.shield_sprite.position.y = this.pos_y;
 	this.shield_sprite.tint = 0xcdcdcd;
-
 	this.shield_sprite.rotation = Math.PI / 2 * (1 + this.shield_dir);
+
+	this.graphics = new PIXI.Graphics();
+	stage.addChild(this.graphics);
+
+	hp_text = new PIXI.extras.BitmapText("04 / 04", {font: "15px Numbers", align: "right"});
+	hp_text.position.x = 300;
+	hp_text.position.y = 450;
+
 
 }
 
@@ -79,6 +87,21 @@ Heart.prototype.takeDamage = function(damage) {
 
 	se_damage.play();
 	this.hp = Math.max(0, this.hp - damage);
+
+	hp_text.text = "0" + this.hp + " / 04";
+
+}
+
+Heart.prototype.render = function() {
+
+	// draw the rectangle?
+	this.graphics.clear();
+	this.graphics.beginFill(0xba0f02);
+	this.graphics.lineStyle(0, 0xFFFFFF);
+	this.graphics.drawRect(262, 447, 28, 21);
+	this.graphics.beginFill(0xffff00);
+	this.graphics.drawRect(262, 447, this.hp * 7, 21);
+	this.graphics.endFill();
 
 }
 

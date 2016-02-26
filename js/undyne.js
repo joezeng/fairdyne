@@ -13,7 +13,7 @@ function Undyne() {
 	this.sprite.position.y = 140;
 	this.sprite.position.z = -1;
 
-	this.sprite.alpha = 0.5;
+	this.sprite.alpha = 0.1;
 
 }
 

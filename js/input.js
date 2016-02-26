@@ -2,6 +2,8 @@ key_is_down = {};
 
 function handleKeyInput(key, dir) {
 
+	if (!game_started) return false;
+
 	if (dir == "down") {
 		key_is_down[key] = true;
 		switch(key) {

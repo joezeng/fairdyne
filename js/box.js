@@ -12,63 +12,59 @@ function Box() {
 	this.dest_top = this.top;
 	this.dest_bottom = this.bottom;
 
-	this.sprite = new PIXI.Rectangle(this.left, this.top, this.right - this.left, this.bottom - this.top);
+	this.graphics = new PIXI.Graphics();
+	stage.addChild(this.graphics);
 
 }
 
-Box.prototype.advanceOneFrame = function() {
-	this.adjustBounds();
+Box.prototype.update = function(ms) {
+	this.adjustBounds(ms);
 }
 
-Box.prototype.adjustBounds = function() {
+Box.prototype.adjustBounds = function(ms) {
 
 	if (this.left < this.dest_left)
-		this.left = Math.min(this.dest_left, this.left + 4);
+		this.left = Math.min(this.dest_left, this.left + 0.3 * ms);
 
 	if (this.left > this.dest_left)
-		this.left = Math.max(this.dest_left, this.left - 4);
+		this.left = Math.max(this.dest_left, this.left - 0.3 * ms);
 
 	if (this.right < this.dest_right)
-		this.right = Math.min(this.dest_right, this.right + 4);
+		this.right = Math.min(this.dest_right, this.right + 0.3 * ms);
 
 	if (this.right > this.dest_right)
-		this.right = Math.max(this.dest_right, this.right - 4);
+		this.right = Math.max(this.dest_right, this.right - 0.3 * ms);
 
 	if (this.top < this.dest_top)
-		this.top = Math.min(this.dest_top, this.top + 4);
+		this.top = Math.min(this.dest_top, this.top + 0.3 * ms);
 
 	if (this.top > this.dest_top)
-		this.top = Math.max(this.dest_top, this.top - 4);
+		this.top = Math.max(this.dest_top, this.top - 0.3 * ms);
 
 	if (this.bottom < this.dest_bottom)
-		this.bottom = Math.min(this.dest_bottom, this.bottom + 4);
+		this.bottom = Math.min(this.dest_bottom, this.bottom + 0.3 * ms);
 
 	if (this.bottom > this.dest_bottom)
-		this.bottom = Math.max(this.dest_bottom, this.bottom - 4);
-
-	this.sprite.x = this.left;
-	this.sprite.y = this.top;
-	this.sprite.width = this.right - this.left;
-	this.sprite.height = this.bottom - this.top;
+		this.bottom = Math.max(this.dest_bottom, this.bottom - 0.3 * ms);
 
 };
 
 
-Box.prototype.render = function(scene) {
+Box.prototype.render = function() {
 
 	// draw the rectangle?
-	scene.clear();
-	scene.beginFill(0x000000);
-	scene.lineStyle(4, 0xFFFFFF);
-	scene.drawRect(
-		this.left - (this.thickness / 2),
-		this.top - (this.thickness / 2),
-		this.right - this.left + (this.thickness),
-		this.bottom - this.top + (this.thickness)
+	this.graphics.clear();
+	this.graphics.beginFill(0x000000);
+	this.graphics.lineStyle(this.thickness, 0xFFFFFF);
+	this.graphics.drawRect(
+		(this.left - (this.thickness / 2)),
+		(this.top - (this.thickness / 2)),
+		(this.right - this.left + (this.thickness)),
+		(this.bottom - this.top + (this.thickness))
 	);
-	scene.endFill();
+	this.graphics.endFill();
 
 }
 
 
-var box = new Box();
+var box;

@@ -1,16 +1,17 @@
+var device_scale = window.devicePixelRatio;
 var renderer;
 
 var stage;
-var box_g, objects_g;
-
+var objects_g;
 
 function setup_rendering() {
 
 	// create a renderer instance and its stage.
-	renderer = PIXI.autoDetectRenderer(640, 480, {transparent: true});
-	stage = new PIXI.Container();
+	var width = 640, height = 480;
+	renderer = PIXI.autoDetectRenderer(width, height,
+		{transparent: true, resolution: window.devicePixelRatio});
 
-	box_g = new PIXI.Graphics();
+	stage = new PIXI.Container();
 	objects_g = new PIXI.Graphics();
 
 	// add the renderer view element to the DOM
@@ -24,7 +25,9 @@ var box_thickness = 4;
 // render the current frame
 function render() {
 
-	box.render(box_g);
+	// TODO: put this in scene code.
+	box.render();
+	heart.render();
 
 	// render the background, including Undyne
 	renderer.render(stage);

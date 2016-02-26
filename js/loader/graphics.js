@@ -1,6 +1,6 @@
 // graphics
 
-var graphics_loader = PIXI.loader;
+var graphics_loader = new PIXI.loaders.Loader();
 
 graphics_loader
 	.add("arrow", "img/arrow.png")
@@ -8,7 +8,6 @@ graphics_loader
 	.add("shield", "img/shield.png")
 	.add("undyne", "img/undyne.gif")
 	.on("complete", function(loader, resources) {
-		console.log(resources);
 		process_graphics(resources);
 	})
 ;

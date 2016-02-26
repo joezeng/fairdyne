@@ -1,7 +1,7 @@
 var arrow_texture;
 
 const turntype_rotation = [0, 1, 2, 2, 3];
-const turntype_tints = [0x2fd0ff, 0xffffff, 0xffdf23, 0xffdf23, 0xffffff];
+const turntype_tints = [0x2fd0ff, 0x7aff2c, 0xffdf23, 0xffdf23, 0xff8c48];
 
 function Arrow (props) {
 
@@ -104,8 +104,8 @@ Arrow.prototype.updatePosition = function () {
 	}
 
 	// update position
-	this.sprite.position.x = heart.pos_x + delta_x;
-	this.sprite.position.y = heart.pos_y + delta_y;
+	this.sprite.position.x = (heart.pos_x + delta_x);
+	this.sprite.position.y = (heart.pos_y + delta_y);
 
 }
 

@@ -2,6 +2,7 @@ loaded_assets = {
 	arrow_sets: false,
 	graphics: false,
 	sounds: false,
+	fonts: false,
 }
 
 function start_preload() {
@@ -9,6 +10,7 @@ function start_preload() {
 	// TODO: load arrow sets independently.
 	markAssetLoaded("arrow_sets");
 
+	fonts_loader.load();
 	graphics_loader.load();
 	// sounds are handled by Howler.js independently.
 
@@ -28,12 +30,15 @@ function checkForAllAssetsLoaded() {
 
 function processLoadedAssets() {
 
-	heart = new Heart();
-	undyne = new Undyne();
+	gamestate = new GameState();
 
+	undyne = new Undyne();
+	stage.addChild(undyne.sprite);
+
+	box = new Box();
+	heart = new Heart();
 
 	arrows = [
-
 		new Arrow({ direction: 3, turntype: 0, target_time: 1.0, speed: 320, colour: "blue" }),
 		new Arrow({ direction: 3, turntype: 0, target_time: 1.4, speed: 320, colour: "blue" }),
 		new Arrow({ direction: 4, turntype: 0, target_time: 1.8, speed: 320, colour: "blue" }),
@@ -79,18 +84,18 @@ function processLoadedAssets() {
 		new Arrow({ direction: 3, turntype: 4, target_time: 12.4, speed: 320, colour: "blue" }),
 		new Arrow({ direction: 4, turntype: 4, target_time: 12.6, speed: 320, colour: "blue" }),
 		new Arrow({ direction: 1, turntype: 4, target_time: 12.8, speed: 320, colour: "blue" }),
-
 	];
 
 	// load all those objects onto the stage.
 
-	stage.addChild(undyne.sprite);
-
-	stage.addChild(box_g);
 	stage.addChild(objects_g);
 
 	stage.addChild(heart.sprite);
 	stage.addChild(heart.shield_sprite);
+
+	stage.addChild(hp_text);
+	stage.addChild(time_text);
+	stage.addChild(love_text);
 
 	for (var a = 0; a < arrows.length; ++a) {
 		stage.addChild(arrows[a].sprite);
