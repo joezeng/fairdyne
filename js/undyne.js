@@ -15,6 +15,8 @@ function Undyne() {
 
 	this.sprite.alpha = 0.1;
 
+	gameplay_stage.addChild(this.sprite);
+
 }
 
 var undyne;

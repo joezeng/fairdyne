@@ -33,11 +33,13 @@ function Arrow (props) {
 	this.sprite.rotation = Math.PI / 2 * (this.direction + turntype_rotation[this.turntype] + 2);
 	this.sprite.tint = turntype_tints[this.turntype];
 
+	gameplay_stage.addChild(this.sprite);
+
 }
 
-Arrow.prototype.advanceOneFrame = function (delta) {
+Arrow.prototype.update = function (delta_ms) {
 
-	this.target_time -= delta;
+	this.target_time -= delta_ms;
 
 	if (this.target_time * this.speed < -SHIELD_DISTANCE + 8) {
 		// arrow hit the heart
@@ -79,13 +81,13 @@ Arrow.prototype.updatePosition = function () {
 	if (this.turntype == 0) {
 		// do nothing, rotation is 0
 	} else if (this.turntype == 1) {
-		rotation = interp_clamp(this.target_time, 0.5, 0.25, 0, Math.PI / 2	);
+		rotation = interp_clamp(distance, 160, 80, 0, Math.PI / 2	);
 	} else if (this.turntype == 2) {
-		rotation = interp_clamp(this.target_time, 0.5, 0.25, 0, Math.PI	);
+		rotation = interp_clamp(distance, 160, 80, 0, Math.PI	);
 	} else if (this.turntype == 3) {
-		rotation = interp_clamp(this.target_time, 0.5, 0.25, 0, - Math.PI );
+		rotation = interp_clamp(distance, 160, 80, 0, - Math.PI );
 	} else if (this.turntype == 4) {
-		rotation = interp_clamp(this.target_time, 0.5, 0.25, 0, - Math.PI / 2);
+		rotation = interp_clamp(distance, 160, 80, 0, - Math.PI / 2);
 	}
 
 	switch(this.direction){
@@ -109,6 +111,49 @@ Arrow.prototype.updatePosition = function () {
 
 }
 
-
-
+var arrow_group_time = 2;
+var current_arrow_group = null;
 var arrows = [];
+
+function loadArrowGroup (arrow_group) {
+
+	// loads the _next_ arrow group when the current one comes into play.
+
+	if (current_arrow_group != null) arrow_group_time += current_arrow_group.next_time;
+
+	var rand_dir = Math.floor(Math.random() * 4);
+	var offset_time = arrow_group_time;
+
+	var last_direction = 0;
+
+	for (var a = 0; a < arrow_group.arrows.length; ++a) {
+
+		var ar = arrow_group.arrows[a];
+		var direction = ar.direction;
+
+		if (direction == "R") { // random
+			direction = 1 + Math.floor(Math.random() * 4);
+		} else if (direction[0] == "+") {
+			var diff = direction.parseInt(direction[1]);
+			direction = (last_direction + diff) % 4;
+		} else if (direction[0] == "-") {
+			var diff = 4 - direction.parseInt(direction[1]);
+			direction = (last_direction + diff) % 4;
+		} // otherwise, it's numeric; leave as-is.
+
+		last_direction = direction;
+
+		var time = offset_time + ar.target_time;
+
+		arrows.push(new Arrow({
+			target_time: time,
+			direction: direction,
+			turntype: ar.turntype,
+			speed: ar.speed,
+		}));
+
+	}
+
+	current_arrow_group = arrow_group;
+
+}

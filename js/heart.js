@@ -46,16 +46,14 @@ function Heart() {
 	this.shield_sprite.rotation = Math.PI / 2 * (1 + this.shield_dir);
 
 	this.graphics = new PIXI.Graphics();
-	stage.addChild(this.graphics);
+	gameplay_stage.addChild(this.graphics);
 
-	hp_text = new PIXI.extras.BitmapText("04 / 04", {font: "15px Numbers", align: "right"});
-	hp_text.position.x = 300;
-	hp_text.position.y = 450;
-
+	gameplay_stage.addChild(this.sprite);
+	gameplay_stage.addChild(this.shield_sprite);
 
 }
 
-Heart.prototype.advanceOneFrame = function() {
+Heart.prototype.update = function(delta_ms) {
 
 	this.invincibility = Math.max(0, this.invincibility - 1);
 	this.sprite.alpha = Math.cos(Math.PI * 2 * this.invincibility / 15) * 0.5 + 0.5;

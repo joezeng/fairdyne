@@ -4,7 +4,7 @@
 	<pages>
 		<page id="0" file="numbers.png" />
 	</pages>
-	<chars count="17">
+	<chars count="19">
 		<char id="32" x="73" y="9"  width="4" height="5" xoffset="0" yoffset="0" xadvance="3" page="0" chnl="0" />
 		<!-- 0123456789 -->
 		<char id="48" x="1"  y="17" width="4" height="5" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="0" />
@@ -17,6 +17,9 @@
 		<char id="55" x="36" y="17" width="4" height="5" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="0" />
 		<char id="56" x="41" y="17" width="4" height="5" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="0" />
 		<char id="57" x="46" y="17" width="4" height="5" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="0" />
+		<!-- ' " -->
+		<char id="39" x="57" y="9"  width="4" height="5" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="0" />
+		<char id="34" x="62" y="9"  width="4" height="5" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="0" />
 		<!-- - . : / -->
 		<char id="45" x="51" y="17" width="4" height="5" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="0" />
 		<char id="46" x="56" y="17" width="4" height="5" xoffset="0" yoffset="0" xadvance="5" page="0" chnl="0" />

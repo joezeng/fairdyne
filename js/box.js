@@ -2,18 +2,18 @@ function Box() {
 
 	this.thickness = 4;
 
-	this.left = 320 - SHIELD_DISTANCE;
-	this.right = 320 + SHIELD_DISTANCE;
-	this.top = 240 - SHIELD_DISTANCE;
-	this.bottom = 240 + SHIELD_DISTANCE;
+	this.left = 16;
+	this.right = 624;
+	this.top = 240;
+	this.bottom = 420;
 
-	this.dest_left = this.left;
-	this.dest_right = this.right;
-	this.dest_top = this.top;
-	this.dest_bottom = this.bottom;
+	this.dest_left = 320 - SHIELD_DISTANCE;
+	this.dest_right = 320 + SHIELD_DISTANCE;
+	this.dest_top = 240 - SHIELD_DISTANCE;
+	this.dest_bottom = 240 + SHIELD_DISTANCE;
 
 	this.graphics = new PIXI.Graphics();
-	stage.addChild(this.graphics);
+	gameplay_stage.addChild(this.graphics);
 
 }
 
@@ -21,31 +21,33 @@ Box.prototype.update = function(ms) {
 	this.adjustBounds(ms);
 }
 
+const box_adjust_speed = 0.5;
+
 Box.prototype.adjustBounds = function(ms) {
 
 	if (this.left < this.dest_left)
-		this.left = Math.min(this.dest_left, this.left + 0.3 * ms);
+		this.left = Math.min(this.dest_left, this.left + box_adjust_speed * ms);
 
 	if (this.left > this.dest_left)
-		this.left = Math.max(this.dest_left, this.left - 0.3 * ms);
+		this.left = Math.max(this.dest_left, this.left - box_adjust_speed * ms);
 
 	if (this.right < this.dest_right)
-		this.right = Math.min(this.dest_right, this.right + 0.3 * ms);
+		this.right = Math.min(this.dest_right, this.right + box_adjust_speed * ms);
 
 	if (this.right > this.dest_right)
-		this.right = Math.max(this.dest_right, this.right - 0.3 * ms);
+		this.right = Math.max(this.dest_right, this.right - box_adjust_speed * ms);
 
 	if (this.top < this.dest_top)
-		this.top = Math.min(this.dest_top, this.top + 0.3 * ms);
+		this.top = Math.min(this.dest_top, this.top + box_adjust_speed * ms);
 
 	if (this.top > this.dest_top)
-		this.top = Math.max(this.dest_top, this.top - 0.3 * ms);
+		this.top = Math.max(this.dest_top, this.top - box_adjust_speed * ms);
 
 	if (this.bottom < this.dest_bottom)
-		this.bottom = Math.min(this.dest_bottom, this.bottom + 0.3 * ms);
+		this.bottom = Math.min(this.dest_bottom, this.bottom + box_adjust_speed * ms);
 
 	if (this.bottom > this.dest_bottom)
-		this.bottom = Math.max(this.dest_bottom, this.bottom - 0.3 * ms);
+		this.bottom = Math.max(this.dest_bottom, this.bottom - box_adjust_speed * ms);
 
 };
 

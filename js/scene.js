@@ -1,13 +1,15 @@
+var splash_stage;
+var gameplay_stage;
 
 function Scene() {
 
-	this.scene_state = "";
-	this.scene_frames = 0;
+	this.scene_state = "loading";
+	this.scene_time = 0;
 
 	/*
 		Possible scene states:
 		"loading",
-		"undyne",
+		"gameplay",
 		"gameover"
 	*/
 
@@ -16,7 +18,7 @@ function Scene() {
 Scene.prototype.selectScene = function(name, data) {
 
 	this.scene_state = name;
-	this.scene_frames = 0;
+	this.scene_time = 0;
 
 	switch(name) {
 		case "loading":
@@ -25,15 +27,11 @@ Scene.prototype.selectScene = function(name, data) {
 
 }
 
-Scene.prototype.advanceOneFrame = function() {
+Scene.prototype.update = function(delta_ms) {
 
-	this.scene_frames += 1;
-
-};
-
-Scene.prototype.handleInput = function(input) {
-
+	this.scene_time += delta_ms;
 
 };
+
 
 var scene = new Scene();

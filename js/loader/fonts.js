@@ -15,4 +15,5 @@ function process_fonts(resources) {
 	resources["numbers_image"].texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
 
 	markAssetLoaded("fonts");
+	
 }
