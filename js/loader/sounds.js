@@ -1,6 +1,6 @@
 var sounds_loaded = {
-	11: false,
-	12: false,
+	111: false,
+	112: false,
 }
 // sounds that need to load before starting the game
 
@@ -17,14 +17,14 @@ function reg_sound(n) {
 // define sound names here. Maybe make a manifest for them later.
 
 var se_arrow_ding = new Howl({
-	onload: reg_sound(11),
+	onload: reg_sound(111),
 	src: "audio/se/000029aa.wav",
 	loop: false,
 	volume: 0.7,
 });
 
 var se_damage = new Howl({
-	onload: reg_sound(12),
+	onload: reg_sound(112),
 	src: "audio/se/000029c3.wav",
 	loop: false,
 	volume: 0.7,

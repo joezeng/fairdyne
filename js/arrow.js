@@ -30,6 +30,9 @@ function Arrow (props) {
 	this.sprite.anchor.x = 0.9;
 	this.sprite.anchor.y = 0.5;
 
+	this.sprite.position.x = -200;
+	this.sprite.position.y = -200;
+
 	this.sprite.rotation = Math.PI / 2 * (this.direction + turntype_rotation[this.turntype] + 2);
 	this.sprite.tint = turntype_tints[this.turntype];
 
@@ -115,7 +118,14 @@ var arrow_group_time = 2;
 var current_arrow_group = null;
 var arrows = [];
 
-function loadArrowGroup (arrow_group) {
+function addNextArrowGroup() {
+	addArrowGroup(
+		arrow_groups[current_arrow_group.next_sets[Math.floor(
+			current_arrow_group.next_sets.length * Math.random())]]
+	);
+}
+
+function addArrowGroup (arrow_group) {
 
 	// loads the _next_ arrow group when the current one comes into play.
 
@@ -134,11 +144,11 @@ function loadArrowGroup (arrow_group) {
 		if (direction == "R") { // random
 			direction = 1 + Math.floor(Math.random() * 4);
 		} else if (direction[0] == "+") {
-			var diff = direction.parseInt(direction[1]);
-			direction = (last_direction + diff) % 4;
+			var diff = parseInt(direction[1]);
+			direction = (last_direction + 3 + diff) % 4 + 1;
 		} else if (direction[0] == "-") {
-			var diff = 4 - direction.parseInt(direction[1]);
-			direction = (last_direction + diff) % 4;
+			var diff = 4 - parseInt(direction[1]);
+			direction = (last_direction + 3 + diff) % 4 + 1;
 		} // otherwise, it's numeric; leave as-is.
 
 		last_direction = direction;

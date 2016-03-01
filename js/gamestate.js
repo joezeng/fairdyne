@@ -30,7 +30,7 @@ GameState.prototype.restartGame = function() {
 	this.elapsed_time = 0;
 	this.score = 0;
 
-	loadArrowGroup(ag1);
+	addArrowGroup(ag1);
 
 }
 
@@ -50,7 +50,7 @@ GameState.prototype.update = function(delta_ms) {
 
 	arrow_group_time -= delta_ms / 1000;
 	if (current_arrow_group && arrow_group_time <= current_arrow_group.next_time) {
-		loadArrowGroup(ag1);
+		addNextArrowGroup();
 	}
 
 	box.update(delta_ms);
