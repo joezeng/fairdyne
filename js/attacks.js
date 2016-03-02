@@ -124,13 +124,23 @@ var ag6 = {
 		{ direction: "1", turntype: 0, target_time: 2.0, speed: 250 },
 		{ direction: "3", turntype: 0, target_time: 2.25, speed: 250 },
 	],
-	next_sets: ["ag1"],
+	next_sets: ["sp1"],
 };
-
-
 
 var sp1 = {
 	type: "spear",
-	next_time: 6.25,
+	next_time: 10,
 	next_sets: ["ag1"],
-}
+};
+
+var attacks = {
+	ag1: ag1,
+	ag2: ag2,
+	ag3: ag3,
+	ag4a: ag4a,
+	ag4b: ag4b,
+	ag5: ag5,
+	ag6: ag6,
+
+	sp1: sp1,
+};

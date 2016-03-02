@@ -1,35 +1,61 @@
-var current_attack = null;
-var attack_time = 2;
+var next_attack = null;
 
-function addNextAttack() {
+var attack_queue_time = 2;
+var attack_timing_queue = [ {type: "null", time: 2} ];
 
-	if (current_attack == null) {
-		addArrowGroup(ag1);
-		current_attack = ag1;
-		return;
-	}
+function switchAttackMode() {
 
-	attack_time += current_attack.next_time;
-	var new_attack = attacks[current_attack.next_sets[Math.floor(current_attack.next_sets.length * Math.random())]];
+	var borrowed_time = attack_timing_queue[0].time;
+	attack_timing_queue.shift();
+
+	var current_attack = attack_timing_queue[0];
+	current_attack.time += borrowed_time;
 
 	switch (current_attack.type) {
 		case "arrow":
-			addArrowGroup(new_attack);
+			box.dest_left = 320 - SHIELD_DISTANCE;
+			box.dest_right = 320 + SHIELD_DISTANCE;
+			box.dest_top = 240 - SHIELD_DISTANCE;
+			box.dest_bottom = 240 + SHIELD_DISTANCE;
+			heart.setColour("green");
 			break;
-		default:
+		case "spear":
+			box.dest_left = 240;
+			box.dest_right = 400;
+			box.dest_top = 200;
+			box.dest_bottom = 360;
+			heart.setColour("red");
 			break;
 	}
 
-	current_attack = new_attack;
-
 }
 
-var attacks = {
-	ag1: ag1,
-	ag2: ag2,
-	ag3: ag3,
-	ag4a: ag4a,
-	ag4b: ag4b,
-	ag5: ag5,
-	ag6: ag6,
-};
+
+function addNextAttack() {
+
+	if (next_attack == null) {
+		// add default first attack
+		addArrowGroup(ag1);
+		next_attack = ag1;
+		attack_timing_queue.push({ type: next_attack.type, time: next_attack.next_time });
+		return;
+	}
+
+	attack_queue_time += next_attack.next_time;
+	var new_attack = attacks[next_attack.next_sets[Math.floor(next_attack.next_sets.length * Math.random())]];
+
+	switch (new_attack.type) {
+		case "arrow":
+			// add arrows two attacks in advance.
+			addArrowGroup(new_attack);
+			break;
+		default:
+			// for other types, a mode switch is required instead.
+			break;
+	}
+
+	next_attack = new_attack;
+
+	attack_timing_queue.push({ type: next_attack.type, time: next_attack.next_time });
+
+}

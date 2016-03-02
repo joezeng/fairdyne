@@ -120,7 +120,8 @@ function addArrowGroup (arrow_group) {
 
 	// loads the _next_ arrow group when the current one comes into play.
 
-	var offset_time = attack_time;
+	var offset_time = attack_queue_time;
+
 	var rand_dir = Math.floor(Math.random() * 4);
 
 	var last_direction = 0;

@@ -56,6 +56,7 @@ function Heart() {
 
 }
 
+
 Heart.prototype.update = function(delta_ms) {
 
 	this.invincibility = Math.max(0, this.invincibility - delta_ms);
@@ -64,6 +65,13 @@ Heart.prototype.update = function(delta_ms) {
 	this.shield_sprite.rotation = 0.6 * this.shield_sprite.rotation + 0.4 * this.target_rotation;
 
 }
+
+
+Heart.prototype.setColour = function(colour) {
+	this.colour = colour;
+	this.sprite.tint = heart_colours[colour];
+}
+
 
 Heart.prototype.setShieldDir = function(dir) {
 

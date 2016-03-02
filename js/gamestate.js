@@ -48,9 +48,16 @@ GameState.prototype.update = function(delta_ms) {
 		}
 	}
 
-	attack_time -= delta_ms / 1000;
-	if (current_attack && attack_time <= current_attack.next_time) {
+	attack_queue_time -= delta_ms / 1000;
+	if (next_attack && attack_queue_time <= next_attack.next_time) {
 		addNextAttack();
+	}
+
+	var current_attack = attack_timing_queue[0];
+	current_attack.time -= delta_ms / 1000;
+	if (current_attack.time <= 0 ||
+		current_attack.time <= 2 && current_attack.type == "spear") {
+		switchAttackMode();
 	}
 
 	box.update(delta_ms);

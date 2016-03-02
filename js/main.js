@@ -1,6 +1,14 @@
 var game_started = false;
 var update_time;
 
+function init_game() {
+	gamestate = new GameState();
+	undyne = new Undyne();
+	box = new Box();
+	heart = new Heart();
+	start_game();
+}
+
 function start_game() {
 	if (game_started == false) {
 		game_started = true;
@@ -10,7 +18,9 @@ function start_game() {
 }
 
 function stop_game() {
+
 	game_started = false;
+
 }
 
 // main game loop

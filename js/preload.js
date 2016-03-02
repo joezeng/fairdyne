@@ -25,17 +25,5 @@ function checkForAllAssetsLoaded() {
 	for (var asset in loaded_assets) {
 		if (!loaded_assets[asset]) return;
 	}
-	processLoadedAssets();
-}
-
-function processLoadedAssets() {
-
-	gamestate = new GameState();
-
-	undyne = new Undyne();
-	box = new Box();
-	heart = new Heart();
-
-	start_game();
-
+	init_game();
 }
