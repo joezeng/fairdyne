@@ -9,7 +9,8 @@ var heart_colours = {
 
 function Heart() {
 
-	this.hp = 4; // always starts with 4 HP
+	this.maxhp = 4; // always starts with 4 HP
+	this.hp = this.maxhp;
 	this.invincibility = 0;
 
 	/* rendering info */
@@ -51,11 +52,13 @@ function Heart() {
 	gameplay_stage.addChild(this.sprite);
 	gameplay_stage.addChild(this.shield_sprite);
 
+	hp_text.text = _.padStart(this.hp, 2, "0") + " / " + _.padStart(this.maxhp, 2, "0");
+
 }
 
 Heart.prototype.update = function(delta_ms) {
 
-	this.invincibility = Math.max(0, this.invincibility - 1);
+	this.invincibility = Math.max(0, this.invincibility - delta_ms);
 	this.sprite.alpha = Math.cos(Math.PI * 2 * this.invincibility / 15) * 0.5 + 0.5;
 
 	this.shield_sprite.rotation = 0.6 * this.shield_sprite.rotation + 0.4 * this.target_rotation;
@@ -77,16 +80,18 @@ Heart.prototype.setShieldDir = function(dir) {
 
 }
 
+var invincibility_increment = 100;
+
 Heart.prototype.takeDamage = function(damage) {
 
 	if (this.invincibility > 0) return;
 
-	this.invincibility = 60;
+	this.invincibility = invincibility_increment;
 
 	se_damage.play();
 	this.hp = Math.max(0, this.hp - damage);
 
-	hp_text.text = "0" + this.hp + " / 04";
+	hp_text.text = _.padStart(this.hp, 2, "0") + " / " + _.padStart(this.maxhp, 2, "0");
 
 }
 
@@ -98,7 +103,7 @@ Heart.prototype.render = function() {
 	this.graphics.lineStyle(0, 0xFFFFFF);
 	this.graphics.drawRect(262, 447, 28, 21);
 	this.graphics.beginFill(0xffff00);
-	this.graphics.drawRect(262, 447, this.hp * 7, 21);
+	this.graphics.drawRect(262, 447, this.hp * 28 / this.maxhp, 21);
 	this.graphics.endFill();
 
 }

@@ -13,7 +13,7 @@ function GameState() {
 	time_text.position.x = 500;
 	time_text.position.y = 450;
 
-	love_text = new PIXI.extras.BitmapText("LV 25", {font: "15px Numbers", align: "left"});
+	love_text = new PIXI.extras.BitmapText("LV " + this.level, {font: "15px Numbers", align: "left"});
 	love_text.position.x = 150;
 	love_text.position.y = 450;
 
@@ -30,7 +30,7 @@ GameState.prototype.restartGame = function() {
 	this.elapsed_time = 0;
 	this.score = 0;
 
-	addArrowGroup(ag1);
+	addNextAttack(ag1);
 
 }
 
@@ -48,9 +48,9 @@ GameState.prototype.update = function(delta_ms) {
 		}
 	}
 
-	arrow_group_time -= delta_ms / 1000;
-	if (current_arrow_group && arrow_group_time <= current_arrow_group.next_time) {
-		addNextArrowGroup();
+	attack_time -= delta_ms / 1000;
+	if (current_attack && attack_time <= current_attack.next_time) {
+		addNextAttack();
 	}
 
 	box.update(delta_ms);

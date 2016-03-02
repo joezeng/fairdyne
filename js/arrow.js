@@ -114,25 +114,14 @@ Arrow.prototype.updatePosition = function () {
 
 }
 
-var arrow_group_time = 2;
-var current_arrow_group = null;
 var arrows = [];
-
-function addNextArrowGroup() {
-	addArrowGroup(
-		arrow_groups[current_arrow_group.next_sets[Math.floor(
-			current_arrow_group.next_sets.length * Math.random())]]
-	);
-}
 
 function addArrowGroup (arrow_group) {
 
 	// loads the _next_ arrow group when the current one comes into play.
 
-	if (current_arrow_group != null) arrow_group_time += current_arrow_group.next_time;
-
+	var offset_time = attack_time;
 	var rand_dir = Math.floor(Math.random() * 4);
-	var offset_time = arrow_group_time;
 
 	var last_direction = 0;
 
@@ -143,13 +132,17 @@ function addArrowGroup (arrow_group) {
 
 		if (direction == "R") { // random
 			direction = 1 + Math.floor(Math.random() * 4);
-		} else if (direction[0] == "+") {
+		} else if (direction[0] == "+") { // relative to last one
 			var diff = parseInt(direction[1]);
 			direction = (last_direction + 3 + diff) % 4 + 1;
-		} else if (direction[0] == "-") {
+		} else if (direction[0] == "-") { // relative to last one
 			var diff = 4 - parseInt(direction[1]);
 			direction = (last_direction + 3 + diff) % 4 + 1;
-		} // otherwise, it's numeric; leave as-is.
+		} else if (direction[0] == "$") { // fixed; isn't affected by global random
+			direction = parseInt(direction[1]);
+		} else if (typeof direction === "string") {
+			direction = (rand_dir + 3 + parseInt(direction)) % 4 + 1;
+		}
 
 		last_direction = direction;
 
@@ -163,7 +156,5 @@ function addArrowGroup (arrow_group) {
 		}));
 
 	}
-
-	current_arrow_group = arrow_group;
 
 }
