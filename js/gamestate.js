@@ -21,14 +21,15 @@ function GameState() {
 	gameplay_stage.addChild(time_text);
 	gameplay_stage.addChild(love_text);
 
-	this.restartGame();
-
 }
 
 GameState.prototype.restartGame = function() {
 
 	this.elapsed_time = 0;
 	this.score = 0;
+
+	attack_queue_time = 2;
+	attack_timing_queue = [ {type: "null", time: 2} ];
 
 	addNextAttack(ag1);
 

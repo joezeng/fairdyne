@@ -6,6 +6,7 @@ function init_game() {
 	undyne = new Undyne();
 	box = new Box();
 	heart = new Heart();
+	gamestate.restartGame();
 	start_game();
 }
 

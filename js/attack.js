@@ -1,7 +1,7 @@
 var next_attack = null;
 
-var attack_queue_time = 2;
-var attack_timing_queue = [ {type: "null", time: 2} ];
+var attack_queue_time = 0;
+var attack_timing_queue = [];
 
 function switchAttackMode() {
 

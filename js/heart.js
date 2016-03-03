@@ -32,17 +32,13 @@ function Heart() {
 	this.target_rotation = Math.PI * 2;
 
 	this.sprite = new PIXI.Sprite(heart_texture);
-	this.sprite.anchor.x = 0.5;
-	this.sprite.anchor.y = 0.5;
-	this.sprite.position.x = this.pos_x;
-	this.sprite.position.y = this.pos_y;
+	this.sprite.anchor.set(0.5, 0.5);
+	this.sprite.position.set(this.pos_x, this.pos_y);
 	this.sprite.tint = heart_colours[this.colour];
 
 	this.shield_sprite = new PIXI.Sprite(shield_texture);
-	this.shield_sprite.anchor.x = 0.5;
-	this.shield_sprite.anchor.y = 1.4;
-	this.shield_sprite.position.x = this.pos_x;
-	this.shield_sprite.position.y = this.pos_y;
+	this.shield_sprite.anchor.set(0.5, 1.4);
+	this.shield_sprite.position.set(this.pos_x, this.pos_y);
 	this.shield_sprite.tint = 0xcdcdcd;
 	this.shield_sprite.rotation = Math.PI / 2 * (1 + this.shield_dir);
 
@@ -60,21 +56,83 @@ function Heart() {
 Heart.prototype.update = function(delta_ms) {
 
 	this.invincibility = Math.max(0, this.invincibility - delta_ms);
-	this.sprite.alpha = Math.cos(Math.PI * 2 * this.invincibility / 15) * 0.5 + 0.5;
+	this.sprite.alpha = Math.cos(Math.PI * 2 * this.invincibility / 250) * 0.5 + 0.5;
 
 	this.shield_sprite.rotation = 0.6 * this.shield_sprite.rotation + 0.4 * this.target_rotation;
 
+	if (this.colour == "green") this.recenter(delta_ms);
+	if (this.colour == "red") this.move(delta_ms);
+
+}
+
+
+Heart.prototype.move = function(delta_ms) {
+
+	var speed = MOVEMENT_SPEED;
+	if (isKeyDown("B")) speed /= 2;
+
+	if (key_is_down["left"])
+		this.pos_x = Math.max(box.left + HEART_SIZE / 2, this.pos_x - speed * delta_ms);
+	if (key_is_down["right"])
+		this.pos_x = Math.min(box.right - HEART_SIZE / 2, this.pos_x + speed * delta_ms);
+	if (key_is_down["up"])
+		this.pos_y = Math.max(box.top + HEART_SIZE / 2, this.pos_y - speed * delta_ms);
+	if (key_is_down["down"])
+		this.pos_y = Math.min(box.bottom - HEART_SIZE / 2, this.pos_y + speed * delta_ms);
+
+	this.setSpritePosition();
+
+}
+
+
+
+Heart.prototype.recenter = function(delta_ms) {
+
+	if (this.pos_x < 320) this.pos_x = Math.min(320, this.pos_x + BOX_ADJUST_SPEED * delta_ms);
+	if (this.pos_x > 320) this.pos_x = Math.max(320, this.pos_x - BOX_ADJUST_SPEED * delta_ms);
+
+	if (this.pos_y < 240) this.pos_y = Math.min(240, this.pos_y + BOX_ADJUST_SPEED * delta_ms);
+	if (this.pos_y > 240) this.pos_y = Math.max(240, this.pos_y - BOX_ADJUST_SPEED * delta_ms);
+
+	this.setSpritePosition();
+
+}
+
+
+
+Heart.prototype.setPosition = function(x, y) {
+	if (x != null) {
+		this.pos_x = x;
+	}
+	if (y != null) {
+		this.pos_y = y;
+	}
+	this.setSpritePosition();
+}
+
+
+Heart.prototype.setSpritePosition = function() {
+	this.sprite.position.set(this.pos_x, this.pos_y);
+	this.shield_sprite.position.set(this.pos_x, this.pos_y);
 }
 
 
 Heart.prototype.setColour = function(colour) {
+
 	this.colour = colour;
 	this.sprite.tint = heart_colours[colour];
+
+	switch(colour) {
+		case "red":
+			this.shield_sprite.visible = false; break;
+		case "green":
+			this.shield_sprite.visible = true; break;
+	}
+
 }
 
 
 Heart.prototype.setShieldDir = function(dir) {
-
 	// set target rotation to the one with the least distance.
 	var new_dir = dir;
 
@@ -85,10 +143,10 @@ Heart.prototype.setShieldDir = function(dir) {
 
 	this.shield_dir = dir;
 	this.target_rotation = Math.PI / 2 * (1 + this.abs_shield_dir);
-
 }
 
-var invincibility_increment = 100;
+
+var invincibility_increment = 1000;
 
 Heart.prototype.takeDamage = function(damage) {
 
@@ -102,6 +160,7 @@ Heart.prototype.takeDamage = function(damage) {
 	hp_text.text = _.padStart(this.hp, 2, "0") + " / " + _.padStart(this.maxhp, 2, "0");
 
 }
+
 
 Heart.prototype.render = function() {
 
