@@ -156,6 +156,9 @@ Heart.prototype.takeDamage = function(damage) {
 
 	se_damage.play();
 	this.hp = Math.max(0, this.hp - damage);
+	if (this.hp == 0) {
+		gamestate.endGame();
+	}
 
 	hp_text.text = _.padStart(this.hp, 2, "0") + " / " + _.padStart(this.maxhp, 2, "0");
 

@@ -3,6 +3,7 @@ var love_text;
 
 function GameState() {
 
+	this.game_running = false;
 	this.level = 1;
 
 	hp_text = new PIXI.extras.BitmapText("04 / 04", {font: "15px Numbers", align: "right"});
@@ -27,15 +28,50 @@ GameState.prototype.restartGame = function() {
 
 	this.elapsed_time = 0;
 	this.score = 0;
+	this.game_running = true;
 
+	// have a 2-second buffer before the first attack
 	attack_queue_time = 2;
 	attack_timing_queue = [ {type: "null", time: 2} ];
 
+	arrows = [];
+	spears = [];
+
 	addNextAttack();
+
+	bgm_undyne1.play();
 
 }
 
+
+GameState.prototype.endGame = function() {
+
+	// remove all arrows and spears
+
+	for (var a = 0; a < arrows.length; ++a)
+		gameplay_stage.removeChild(arrows[a].sprite);
+	for (var a = 0; a < spears.length; ++a)
+		gameplay_stage.removeChild(spears[a].sprite);
+
+	this.game_running = false;
+	bgm_undyne1.stop();
+
+}
+
+
 GameState.prototype.update = function(delta_ms) {
+
+	if (!this.game_running) {
+		// heart is still flashing.
+		box.update(delta_ms);
+		heart.update(delta_ms);
+		box.dest_left = 320 - SHIELD_DISTANCE;
+		box.dest_right = 320 + SHIELD_DISTANCE;
+		box.dest_top = 240 - SHIELD_DISTANCE;
+		box.dest_bottom = 240 + SHIELD_DISTANCE;
+		heart.setColour("green");
+		return;
+	}
 
 	this.elapsed_time += delta_ms;
 	time_text.text = format_time_long(this.elapsed_time);

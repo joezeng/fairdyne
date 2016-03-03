@@ -1,4 +1,5 @@
 var sounds_loaded = {
+	11: false,
 	111: false,
 	112: false,
 	113: false,
@@ -17,6 +18,14 @@ function reg_sound(n) {
 }
 
 // define sound names here. Maybe make a manifest for them later.
+
+var bgm_undyne1 = new Howl({
+	onload: reg_sound(11),
+	src: "audio/bgm/mus_undyneboss.ogg",
+	loop: true,
+	volume: 0.7,
+});
+
 
 var se_arrow_ding = new Howl({
 	onload: reg_sound(111),
