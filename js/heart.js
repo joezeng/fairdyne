@@ -166,7 +166,7 @@ Heart.prototype.render = function() {
 
 	// draw the rectangle?
 	this.graphics.clear();
-	this.graphics.beginFill(0xba0f02);
+	this.graphics.beginFill(0xff0000);
 	this.graphics.lineStyle(0, 0xFFFFFF);
 	this.graphics.drawRect(262, 447, 28, 21);
 	this.graphics.beginFill(0xffff00);

@@ -1,6 +1,8 @@
 var sounds_loaded = {
 	111: false,
 	112: false,
+	113: false,
+	114: false,
 }
 // sounds that need to load before starting the game
 
@@ -26,6 +28,21 @@ var se_arrow_ding = new Howl({
 var se_damage = new Howl({
 	onload: reg_sound(112),
 	src: "audio/se/000029c3.wav",
+	loop: false,
+	volume: 0.7,
+});
+
+
+var se_spear_appear = new Howl({
+	onload: reg_sound(113),
+	src: "audio/se/0000299b.wav",
+	loop: false,
+	volume: 0.7,
+});
+
+var se_spear_shoot = new Howl({
+	onload: reg_sound(114),
+	src: "audio/se/000029a2.wav",
 	loop: false,
 	volume: 0.7,
 });

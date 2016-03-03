@@ -113,8 +113,8 @@ Arrow.prototype.updatePosition = function () {
 	}
 
 	// update position
-	this.sprite.position.x = (heart.pos_x + delta_x);
-	this.sprite.position.y = (heart.pos_y + delta_y);
+	this.sprite.position.x = (320 + delta_x);
+	this.sprite.position.y = (240 + delta_y);
 
 }
 

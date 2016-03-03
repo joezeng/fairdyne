@@ -127,20 +127,105 @@ var ag6 = {
 	next_sets: ["sp1"],
 };
 
+
+var ag7 = {
+	type: "arrow",
+	id: "ag7",
+	next_time: 3.75,
+	arrows: [
+		{ direction: "1", turntype: 0, target_time: 0.0, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 0.25, speed: 300 },
+		{ direction: "1", turntype: 0, target_time: 0.5, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 0.75, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 1.0, speed: 300 },
+		{ direction: "1", turntype: 0, target_time: 1.25, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 1.5, speed: 300 },
+		{ direction: "1", turntype: 0, target_time: 1.75, speed: 300 },
+	],
+	next_sets: ["ag8"],
+};
+
+
+var ag8 = {
+	type: "arrow",
+	id: "ag8",
+	next_time: 3.5,
+	arrows: [
+		{ direction: "3", turntype: 0, target_time: 0.0, speed: 300 },
+		{ direction: "4", turntype: 0, target_time: 0.25, speed: 300 },
+		{ direction: "1", turntype: 0, target_time: 0.5, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 0.75, speed: 300 },
+		{ direction: "4", turntype: 0, target_time: 1.0, speed: 300 },
+		{ direction: "1", turntype: 0, target_time: 1.25, speed: 300 },
+		{ direction: "2", turntype: 0, target_time: 1.5, speed: 75 },
+	],
+	next_sets: ["ag9"],
+};
+
+
+
+var ag9 = {
+	type: "arrow",
+	id: "ag9",
+	next_time: 3.5,
+	arrows: [
+		{ direction: "2", turntype: 0, target_time: 0.0, speed: 400 },
+		{ direction: "2", turntype: 0, target_time: 0.2, speed: 320 },
+		{ direction: "2", turntype: 0, target_time: 0.5, speed: 240 },
+		{ direction: "4", turntype: 0, target_time: 0.9, speed: 400 },
+		{ direction: "4", turntype: 0, target_time: 1.1, speed: 320 },
+		{ direction: "4", turntype: 0, target_time: 1.4, speed: 240 },
+		{ direction: "1", turntype: 0, target_time: 1.7, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 2.0, speed: 300 },
+		{ direction: "1", turntype: 0, target_time: 2.3, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 2.6, speed: 300 },
+	],
+	next_sets: ["ag10"],
+};
+
+
+var ag10 = {
+	type: "arrow",
+	id: "ag10",
+	next_time: 3.5,
+	arrows: [
+		{ direction: "4", turntype: 0, target_time: 0.0, speed: 200 },
+		{ direction: "2", turntype: 0, target_time: 0.25, speed: 200 },
+		{ direction: "4", turntype: 0, target_time: 0.5, speed: 200 },
+		{ direction: "2", turntype: 0, target_time: 0.75, speed: 200 },
+		{ direction: "2", turntype: 0, target_time: 0.9, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 1.15, speed: 300 },
+		{ direction: "1", turntype: 0, target_time: 1.4, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 1.65, speed: 300 },
+		{ direction: "3", turntype: 0, target_time: 2.0, speed: 400 },
+		{ direction: "1", turntype: 0, target_time: 2.25, speed: 400 },
+		{ direction: "4", turntype: 0, target_time: 2.5, speed: 400 },
+		{ direction: "2", turntype: 0, target_time: 2.75, speed: 400 },
+	],
+	next_sets: ["sp1"],
+};
+
+
+
 var sp1 = {
 	type: "spear",
 	next_time: 10,
-	next_sets: ["ag1"],
+	next_sets: ["ag7"],
 };
+
+
 
 var attacks = {
 	ag1: ag1,
 	ag2: ag2,
 	ag3: ag3,
-	ag4a: ag4a,
-	ag4b: ag4b,
+	ag4a: ag4a, ag4b: ag4b,
 	ag5: ag5,
 	ag6: ag6,
+	ag7: ag7,
+	ag8: ag8,
+	ag9: ag9,
+	ag10: ag10,
 
 	sp1: sp1,
 };

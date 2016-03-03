@@ -7,6 +7,8 @@ function Spear (props) {
 
 	this.active_time = 0;
 
+	this.shot = false;
+
 	this.appear_time = props.appear_time || 1000;
 	this.initial_position = props.initial_position || { x: 320, y: 320 };
 	this.direction = props.direction || { x: 0, y: -1 }; // normalized vector representing
@@ -37,6 +39,10 @@ Spear.prototype.update = function(delta_ms) {
 			Math.pow(interp_clamp(this.active_time, 0, this.appear_time, 1, 0), 2);
 		this.sprite.alpha = this.active_time / this.appear_time;
 	} else {
+		if (this.shot == false) {
+			this.shot = true;
+			se_spear_shoot.play();
+		}
 		this.sprite.alpha = 1;
 		this.pos_x += this.direction.x * SPEAR_SPEED * delta_ms;
 		this.pos_y += this.direction.y * SPEAR_SPEED * delta_ms;
@@ -81,6 +87,8 @@ Spear.prototype.collidesWithHeart = function() {
 var spears = [];
 
 function addNewSpear() {
+
+	se_spear_appear.play();
 
 	// center of play grid: 320, 280
 	var spawn_angle = Math.random() * Math.PI * 2;
