@@ -31,7 +31,7 @@ GameState.prototype.restartGame = function() {
 	attack_queue_time = 2;
 	attack_timing_queue = [ {type: "null", time: 2} ];
 
-	addNextAttack(ag1);
+	addNextAttack();
 
 }
 
@@ -49,6 +49,15 @@ GameState.prototype.update = function(delta_ms) {
 		}
 	}
 
+	// spears.update(delta_ms)
+	for (var a = 0; a < spears.length; ++a) {
+		spears[a].update(delta_ms);
+		if (spears[a].removed) {
+			gameplay_stage.removeChild(spears[a].sprite);
+			spears.splice(a, 1);
+		}
+	}
+
 	attack_queue_time -= delta_ms / 1000;
 	if (next_attack && attack_queue_time <= next_attack.next_time) {
 		addNextAttack();
@@ -56,6 +65,15 @@ GameState.prototype.update = function(delta_ms) {
 
 	var current_attack = attack_timing_queue[0];
 	current_attack.time -= delta_ms / 1000;
+
+	if (current_attack.type == "spear") {
+		spear_time -= delta_ms;
+		if (spear_time <= 0) {
+			spear_time += spear_interval;
+			addNewSpear();
+		}
+	}
+
 	if (current_attack.time <= 0 ||
 		current_attack.time <= 2 && current_attack.type == "spear") {
 		switchAttackMode();

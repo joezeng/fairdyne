@@ -36,6 +36,10 @@ function Arrow (props) {
 	this.sprite.rotation = Math.PI / 2 * (this.direction + turntype_rotation[this.turntype] + 2);
 	this.sprite.tint = turntype_tints[this.turntype];
 
+	if (attack_timing_queue[0].type != "arrow" && attack_timing_queue[0].type != "null") {
+		this.sprite.visible = false;
+	}
+
 	gameplay_stage.addChild(this.sprite);
 
 }
