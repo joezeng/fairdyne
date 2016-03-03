@@ -7,7 +7,7 @@ var ag1 = {
 		{ direction: "$3", turntype: 0, target_time: 0.6, speed: 100 },
 		{ direction: "$3", turntype: 0, target_time: 1.2, speed: 100 },
 	],
-	next_sets: ["ag2"],
+	next_sets: ["sp1"],
 };
 
 

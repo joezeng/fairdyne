@@ -44,7 +44,37 @@ Spear.prototype.update = function(delta_ms) {
 
 	this.sprite.position.set(this.pos_x, this.pos_y);
 
+	if (this.collidesWithHeart()) {
+		heart.takeDamage(1);
+		this.removed = true;
+	}
+
 	if (this.active_time > spear_total_time) this.removed = true;
+
+}
+
+
+Spear.prototype.collidesWithHeart = function() {
+	/*
+		check for collisions along the shaft of the spear
+	*/
+	var displacement = { x: heart.pos_x - this.pos_x, y: heart.pos_y - this.pos_y };
+	var normal_dir = { x: this.direction.y, y: -this.direction.x };
+	// get the decomposition along "direction"
+	var along = dot_product(displacement, this.direction);
+	var dist = dot_product(displacement, normal_dir);
+
+	if (Math.abs(along) < 23 && Math.abs(dist) < 8) return true;
+
+	/*
+		then, check for collisions at the tip
+	*/
+	var tip = { x: this.pos_x + this.direction.x * 23, y: this.pos_y + this.direction.y * 23};
+	var distance = norm( heart.pos_x - tip.x, heart.pos_y - tip.y );
+
+	if (distance < HEART_SIZE / 2) return true;
+
+	return false;
 
 }
 
@@ -57,8 +87,8 @@ function addNewSpear() {
 	var position = { x: 320 + 160 * Math.cos(spawn_angle), y: 280 + 160 * Math.sin(spawn_angle) };
 
 	var displacement = { x: heart.pos_x - position.x, y: heart.pos_y - position.y };
-	var distance = Math.sqrt(displacement.x * displacement.x + displacement.y * displacement.y);
-	var direction = { x: displacement.x / distance, y: displacement.y / distance };
+	var distance = norm(displacement.x, displacement.y);
+	var direction = scalar_mult(displacement, 1 / distance);
 
 	spears.push(new Spear({ initial_position: position, direction: direction }));
 
