@@ -7,6 +7,7 @@ function setup_rendering() {
 	renderer = PIXI.autoDetectRenderer(width, height,
 		{transparent: true, resolution: window.devicePixelRatio});
 
+	splash_stage = new PIXI.Container();
 	gameplay_stage = new PIXI.Container();
 
 	// add the renderer view element to the DOM
@@ -21,8 +22,9 @@ var box_thickness = 4;
 function render() {
 
 	switch (scene.scene_state) {
-		case "loading":
-
+		case "splash":
+			renderer.render(splash_stage);
+			break;
 		case "gameplay":
 			box.render();
 			heart.render();

@@ -24,6 +24,25 @@ function GameState() {
 
 }
 
+GameState.prototype.handleInput = function(key) {
+	switch(key) {
+		case "left":
+			heart.setShieldDir(2);
+			break;
+		case "right":
+			heart.setShieldDir(4);
+			break;
+		case "up":
+			heart.setShieldDir(3);
+			break;
+		case "down":
+			heart.setShieldDir(1);
+			break;
+		default:
+			break;
+	}
+}
+
 GameState.prototype.restartGame = function() {
 
 	this.elapsed_time = 0;

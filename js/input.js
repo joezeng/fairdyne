@@ -6,24 +6,19 @@ function handleKeyInput(key, dir) {
 
 	if (dir == "down") {
 		key_is_down[key] = true;
-		switch(key) {
-			case "left":
-				heart.setShieldDir(2);
-				break;
-			case "right":
-				heart.setShieldDir(4);
-				break;
-			case "up":
-				heart.setShieldDir(3);
-				break;
-			case "down":
-				heart.setShieldDir(1);
-				break;
-			default:
-				break;
-		}
 	} else if (dir == "up") {
 		key_is_down[key] = false;
+	}
+
+	switch(scene.scene_state) {
+		case "splash":
+			if (dir == "down" && key == "A") {
+				splash_animation.outro = true;
+			}
+			break;
+		case "gameplay":
+			if (dir == "down") gamestate.handleInput(key);
+			break;
 	}
 
 }

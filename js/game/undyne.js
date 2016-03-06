@@ -1,5 +1,7 @@
 var undyne_texture;
 
+var undyne_hair_textures = Array(4);
+
 function Undyne() {
 
 	this.sprite = new PIXI.Sprite(undyne_texture);

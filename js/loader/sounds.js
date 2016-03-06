@@ -4,6 +4,7 @@ var sounds_loaded = {
 	112: false,
 	113: false,
 	114: false,
+	115: false,
 }
 // sounds that need to load before starting the game
 
@@ -19,12 +20,20 @@ function reg_sound(n) {
 
 // define sound names here. Maybe make a manifest for them later.
 
+var bgm_undyne = new Howl({
+	onload: reg_sound(10),
+	src: "audio/bgm/mus_undyne.ogg",
+	loop: true,
+	volume: 0.7,
+});
+
 var bgm_undyne1 = new Howl({
 	onload: reg_sound(11),
 	src: "audio/bgm/mus_undyneboss.ogg",
 	loop: true,
 	volume: 0.7,
 });
+
 
 
 var se_arrow_ding = new Howl({
@@ -41,7 +50,6 @@ var se_damage = new Howl({
 	volume: 0.7,
 });
 
-
 var se_spear_appear = new Howl({
 	onload: reg_sound(113),
 	src: "audio/se/0000299b.wav",
@@ -52,6 +60,14 @@ var se_spear_appear = new Howl({
 var se_spear_shoot = new Howl({
 	onload: reg_sound(114),
 	src: "audio/se/000029a2.wav",
+	loop: false,
+	volume: 0.7,
+});
+
+
+var se_attack = new Howl({
+	onload: reg_sound(115),
+	src: "audio/se/000029c1.wav",
 	loop: false,
 	volume: 0.7,
 });

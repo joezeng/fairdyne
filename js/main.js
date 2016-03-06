@@ -2,11 +2,11 @@ var game_started = false;
 var update_time;
 
 function init_game() {
+	splash_animation = new SplashScene();
 	gamestate = new GameState();
 	undyne = new Undyne();
 	box = new Box();
 	heart = new Heart();
-	gamestate.restartGame();
 	start_game();
 }
 
@@ -33,7 +33,7 @@ function update() {
 	var delta_ms = current_time - update_time;
 	update_time = current_time;
 
-	gamestate.update(delta_ms);
+	scene.update(delta_ms);
 
 	render();
 

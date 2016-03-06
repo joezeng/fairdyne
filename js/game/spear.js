@@ -76,9 +76,9 @@ Spear.prototype.collidesWithHeart = function() {
 		then, check for collisions at the tip
 	*/
 	var tip = { x: this.pos_x + this.direction.x * 23, y: this.pos_y + this.direction.y * 23};
-	var distance = norm( heart.pos_x - tip.x, heart.pos_y - tip.y );
+	var tip_dist = norm( heart.pos_x - tip.x, heart.pos_y - tip.y );
 
-	if (distance < HEART_SIZE / 2) return true;
+	if (tip_dist < HEART_SIZE / 2) return true;
 
 	return false;
 
