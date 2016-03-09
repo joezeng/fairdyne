@@ -210,6 +210,6 @@ var ag10 = {
 var sp1 = {
 	type: "spear",
 	next_time: 10,
-	spear_interval: 0.6,
+	spear_interval: 600,
 	next_sets: ["ag7"],
 };
