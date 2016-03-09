@@ -36,7 +36,7 @@ function Arrow (props) {
 	this.sprite.rotation = Math.PI / 2 * (this.direction + turntype_rotation[this.turntype] + 2);
 	this.sprite.tint = turntype_tints[this.turntype];
 
-	if (attack_timing_queue[0].type != "arrow" && attack_timing_queue[0].type != "null") {
+	if (attack_queue[0].type != "arrow" && attack_queue[0].type != "null") {
 		this.sprite.visible = false;
 	}
 
@@ -124,7 +124,7 @@ function addArrowGroup (arrow_group) {
 
 	// loads the _next_ arrow group when the current one comes into play.
 
-	var offset_time = attack_queue_time;
+	var offset_time = attack_queue[0].time;
 
 	var rand_dir = Math.floor(Math.random() * 4);
 

@@ -210,22 +210,6 @@ var ag10 = {
 var sp1 = {
 	type: "spear",
 	next_time: 10,
+	spear_interval: 0.6,
 	next_sets: ["ag7"],
-};
-
-
-
-var attacks = {
-	ag1: ag1,
-	ag2: ag2,
-	ag3: ag3,
-	ag4a: ag4a, ag4b: ag4b,
-	ag5: ag5,
-	ag6: ag6,
-	ag7: ag7,
-	ag8: ag8,
-	ag9: ag9,
-	ag10: ag10,
-
-	sp1: sp1,
 };

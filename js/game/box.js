@@ -7,10 +7,10 @@ function Box() {
 	this.top = 240;
 	this.bottom = 420;
 
-	this.dest_left = 320 - SHIELD_DISTANCE;
-	this.dest_right = 320 + SHIELD_DISTANCE;
-	this.dest_top = 240 - SHIELD_DISTANCE;
-	this.dest_bottom = 240 + SHIELD_DISTANCE;
+	this.dest_left = 16;
+	this.dest_right = 624;
+	this.dest_top = 240;
+	this.dest_bottom = 420;
 
 	this.graphics = new PIXI.Graphics();
 	gameplay_stage.addChild(this.graphics);

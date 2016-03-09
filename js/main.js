@@ -2,12 +2,20 @@ var game_started = false;
 var update_time;
 
 function init_game() {
+
 	splash_animation = new SplashScene();
 	gamestate = new GameState();
 	undyne = new Undyne();
 	box = new Box();
 	heart = new Heart();
+	menu = new Menu();
+
+	gameplay_stage.addChild(hp_text);
+	gameplay_stage.addChild(time_text);
+	gameplay_stage.addChild(love_text);
+
 	start_game();
+
 }
 
 function start_game() {

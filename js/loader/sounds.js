@@ -1,5 +1,7 @@
 var sounds_loaded = {
+	10: false,
 	11: false,
+	12: false,
 	111: false,
 	112: false,
 	113: false,
@@ -33,6 +35,15 @@ var bgm_undyne1 = new Howl({
 	loop: true,
 	volume: 0.7,
 });
+
+var bgm_undyne2 = new Howl({
+	onload: reg_sound(12),
+	src: "audio/bgm/mus_x_undyne.ogg",
+	loop: true,
+	volume: 0.7,
+});
+
+
 
 
 
@@ -68,6 +79,14 @@ var se_spear_shoot = new Howl({
 var se_attack = new Howl({
 	onload: reg_sound(115),
 	src: "audio/se/000029c1.wav",
+	loop: false,
+	volume: 0.7,
+});
+
+
+var se_undyne = new Howl({
+	onload: reg_sound(115),
+	src: "audio/se/000029dc.wav",
 	loop: false,
 	volume: 0.7,
 });
