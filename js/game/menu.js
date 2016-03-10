@@ -8,6 +8,10 @@ function Menu() {
 	this.current_option = 0;
 	this.options = ["normal", "hard", "genocide"];
 
+	this.select_text = new PIXI.extras.BitmapText("Select a difficulty level.", {font: "18px Undertale"});
+	this.select_text.position.set(80, 260);
+	this.select_text.visible = false;
+
 	this.normal_text = new PIXI.extras.BitmapText("", {font: "18px Undertale"});
 	this.normal_text.position.set(80, 300);
 	this.normal_text_chars = 0;
@@ -22,6 +26,7 @@ function Menu() {
 	this.hard_text_text = "I want to FIGHT THE TRUE HERO";
 	this.genocide_text_text = "I want to ATONE FOR MY SINS";
 
+	gameplay_stage.addChild(this.select_text);
 	gameplay_stage.addChild(this.normal_text);
 	gameplay_stage.addChild(this.hard_text);
 	gameplay_stage.addChild(this.genocide_text);
@@ -52,6 +57,8 @@ Menu.prototype.show = function() {
 
 	gamestate.state = "menu";
 
+	this.select_text.visible = true;
+
 	this.shown = true;
 	heart.sprite.visible = true;
 	this.updateHeartPosition();
@@ -73,6 +80,7 @@ Menu.prototype.hide = function() {
 
 	this.shown = false;
 
+	this.select_text.visible = false;
 	this.normal_text.visible = false;
 	this.hard_text.visible = false;
 	this.genocide_text.visible = false;

@@ -139,6 +139,8 @@ GameState.prototype.endGame = function() {
 	undyne.opacity_g.alpha = 0;
 	this.state = "gameover";
 
+	menu.select_text.text = "Play again?"
+
 	switch (this.difficulty) {
 		case "normal":
 		case "hard":
