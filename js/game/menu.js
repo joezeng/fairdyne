@@ -50,9 +50,16 @@ Menu.prototype.update = function(delta_ms) {
 
 Menu.prototype.show = function() {
 
+	gamestate.state = "menu";
+
 	this.shown = true;
 	heart.sprite.visible = true;
 	this.updateHeartPosition();
+
+	box.dest_left = 16;
+	box.dest_right = 624;
+	box.dest_top = 240;
+	box.dest_bottom = 420;
 
 	this.normal_text.visible = true;
 	this.hard_text.visible = true;
@@ -61,6 +68,8 @@ Menu.prototype.show = function() {
 }
 
 Menu.prototype.hide = function() {
+
+	gamestate.state = "none";
 
 	this.shown = false;
 
