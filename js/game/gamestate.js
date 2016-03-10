@@ -62,6 +62,15 @@ GameState.prototype.restartGame = function(difficulty) {
 
 	switch (difficulty) {
 		case "normal":
+			heart.invincibility_increment = 1000; break;
+		case "hard":
+			heart.invincibility_increment = 500; break;
+		case "genocide":
+			heart.invincibility_increment = 100; break;
+	}
+
+	switch (difficulty) {
+		case "normal":
 		case "hard":
 			// have a 2-second buffer before the first attack
 			attack_queue_time = 2;
@@ -72,7 +81,7 @@ GameState.prototype.restartGame = function(difficulty) {
 			// genocide is timed to the music.
 			attack_queue_time = 6.4;
 			attack_queue = [ { type: "null", time: 6.4 } ];
-			addNextAttack(g_sp1);
+			addNextAttack(g_ag1);
 			break;
 	}
 

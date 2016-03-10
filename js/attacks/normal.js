@@ -206,7 +206,6 @@ var ag10 = {
 };
 
 
-
 var sp1 = {
 	type: "spear",
 	next_time: 10,

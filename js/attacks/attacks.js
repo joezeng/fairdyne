@@ -9,8 +9,11 @@ var attacks = {
 	ag8: ag8,
 	ag9: ag9,
 	ag10: ag10,
-	sp1: sp1,
 
+	g_ag1: g_ag1,
+
+	sp1: sp1,
+	
 	g_sp1: g_sp1,
 	g_sp2: g_sp2,
 };

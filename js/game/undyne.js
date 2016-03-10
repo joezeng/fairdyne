@@ -148,7 +148,10 @@ Undyne.prototype.advanceTextA = function() {
 
 Undyne.prototype.advanceTextB = function() {
 
-
+	if (this.text_state == "talking") {
+		this.speech_bubble_text.text = this.sbtext.text;
+		this.text_state = "waiting";
+	}
 
 }
 

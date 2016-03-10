@@ -12,6 +12,7 @@ function Heart() {
 	this.maxhp = 4; // always starts with 4 HP
 	this.hp = this.maxhp;
 	this.invincibility = 0;
+	this.invincibility_increment = 1000;
 
 	/* rendering info */
 
@@ -148,13 +149,11 @@ Heart.prototype.setShieldDir = function(dir) {
 }
 
 
-var invincibility_increment = 1000;
-
 Heart.prototype.takeDamage = function(damage) {
 
 	if (this.invincibility > 0) return;
 
-	this.invincibility = invincibility_increment;
+	this.invincibility = this.invincibility_increment;
 
 	se_damage.play();
 	this.hp = Math.max(0, this.hp - damage);
