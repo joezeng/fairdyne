@@ -7,6 +7,9 @@ var sounds_loaded = {
 	113: false,
 	114: false,
 	115: false,
+	120: false,
+	121: false,
+	141: false,
 }
 // sounds that need to load before starting the game
 
@@ -75,7 +78,6 @@ var se_spear_shoot = new Howl({
 	volume: 0.7,
 });
 
-
 var se_attack = new Howl({
 	onload: reg_sound(115),
 	src: "audio/se/000029c1.wav",
@@ -84,8 +86,23 @@ var se_attack = new Howl({
 });
 
 
+var se_menu_move = new Howl({
+	onload: reg_sound(120),
+	src: "audio/se/00002a00.wav",
+	loop: false,
+	volume: 0.7,
+});
+
+var se_menu_select = new Howl({
+	onload: reg_sound(121),
+	src: "audio/se/000029fd.wav",
+	loop: false,
+	volume: 0.7,
+});
+
+
 var se_undyne = new Howl({
-	onload: reg_sound(115),
+	onload: reg_sound(141),
 	src: "audio/se/000029dc.wav",
 	loop: false,
 	volume: 0.7,

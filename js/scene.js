@@ -26,7 +26,7 @@ Scene.prototype.selectScene = function(name, data) {
 			undyne.queue_text([
 				{ text: "So you want to spar\nwith me, huh?" },
 				{ text: "Well you'd better\ngive it all you've\ngot!" },
-			], function(){gamestate.restartGame("genocide")});
+			], menu.show.bind(menu));
 			gameplay_stage.alpha = 0;
 			break;
 	}

@@ -63,8 +63,10 @@ Heart.prototype.update = function(delta_ms) {
 
 	this.shield_sprite.rotation = 0.6 * this.shield_sprite.rotation + 0.4 * this.target_rotation;
 
-	if (this.colour == "green") this.recenter(delta_ms);
-	if (this.colour == "red") this.move(delta_ms);
+	if (gamestate.state == "playing") {
+		if (this.colour == "green") this.recenter(delta_ms);
+		if (this.colour == "red") this.move(delta_ms);
+	}
 
 }
 

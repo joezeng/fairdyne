@@ -22,27 +22,47 @@ function GameState() {
 
 GameState.prototype.handleInput = function(key) {
 
-	switch(key) {
-		case "left":
-			heart.setShieldDir(2);
-			break;
-		case "right":
-			heart.setShieldDir(4);
-			break;
-		case "up":
-			heart.setShieldDir(3);
-			break;
-		case "down":
-			heart.setShieldDir(1);
-			break;
-		case "A":
-			undyne.advanceTextA();
-			break;
-		case "B":
-			undyne.advanceTextB();
-			break;
-		default:
-			break;
+	if (undyne.text_state != "none"){
+		switch(key) {
+			case "A":
+				undyne.advanceTextA();
+				break;
+			case "B":
+				undyne.advanceTextB();
+				break;
+			default:
+				break;
+		}
+	} else if (this.state == "menu") {
+		switch(key) {
+			case "up":
+				menu.moveUp();
+				break;
+			case "down":
+				menu.moveDown();
+				break;
+			case "A":
+				menu.select();
+			default:
+				break;
+		}
+	} else if (this.state == "playing") {
+		switch(key) {
+			case "left":
+				heart.setShieldDir(2);
+				break;
+			case "right":
+				heart.setShieldDir(4);
+				break;
+			case "up":
+				heart.setShieldDir(3);
+				break;
+			case "down":
+				heart.setShieldDir(1);
+				break;
+			default:
+				break;
+		}
 	}
 
 }
@@ -130,7 +150,7 @@ GameState.prototype.endGame = function() {
 	undyne.queue_text([
 		{ text: "Is that the best\nyou've got?" },
 		{ text: "Pathetic. I know you\ncan do better!" },
-	], function(){gamestate.restartGame("normal")});
+	], menu.show.bind(menu));
 
 }
 
@@ -140,6 +160,7 @@ GameState.prototype.update = function(delta_ms) {
 	box.update(delta_ms);
 	heart.update(delta_ms);
 	undyne.update(delta_ms);
+	menu.update(delta_ms);
 
 	if (this.state == "playing") {
 		this.elapsed_time += delta_ms;
