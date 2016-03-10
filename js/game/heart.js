@@ -76,14 +76,21 @@ Heart.prototype.move = function(delta_ms) {
 	var speed = MOVEMENT_SPEED;
 	if (isKeyDown("B")) speed /= 2;
 
+	var d = { x: 0, y: 0 };
+
 	if (key_is_down["left"])
-		this.pos_x = Math.max(box.left + HEART_SIZE / 2, this.pos_x - speed * delta_ms);
+		d.x = - speed * delta_ms;
 	if (key_is_down["right"])
-		this.pos_x = Math.min(box.right - HEART_SIZE / 2, this.pos_x + speed * delta_ms);
+		d.x = + speed * delta_ms;
 	if (key_is_down["up"])
-		this.pos_y = Math.max(box.top + HEART_SIZE / 2, this.pos_y - speed * delta_ms);
+		d.y = - speed * delta_ms;
 	if (key_is_down["down"])
-		this.pos_y = Math.min(box.bottom - HEART_SIZE / 2, this.pos_y + speed * delta_ms);
+		d.y = + speed * delta_ms;
+
+	var f = vnorm(d) == 0 ? d : scalar_mult(d, speed * delta_ms / vnorm(d));
+
+	this.pos_x = clamp(this.pos_x + f.x, box.left + HEART_SIZE / 2, box.right - HEART_SIZE / 2);
+	this.pos_y = clamp(this.pos_y + f.y, box.top + HEART_SIZE / 2, box.bottom - HEART_SIZE / 2);
 
 	this.setSpritePosition();
 

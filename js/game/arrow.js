@@ -65,17 +65,6 @@ Arrow.prototype.update = function (delta_ms) {
 }
 
 
-function interp_clamp(v, start, end, f_start, f_end) {
-	/*
-		a linear function that clamps function return values
-		between min and max and then interpolates outputs between
-		f_start and f_end.
-	*/
-	if (v < start && end > start || v > start && end < start) return f_start;
-	if (v > end && end > start || v < end && end < start) return f_end;
-	else return f_start + ((f_end - f_start) * (v - start) / (end - start));
-}
-
 
 Arrow.prototype.updatePosition = function () {
 

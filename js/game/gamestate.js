@@ -121,6 +121,8 @@ GameState.prototype.restartGame = function(difficulty) {
 			bgm_undyne2.play(); break;
 	}
 
+	switchAttackMode();
+
 }
 
 
@@ -208,7 +210,6 @@ GameState.prototype.update = function(delta_ms) {
 		if (current_attack.time <= 0 ||
 			current_attack.time <= 2 && current_attack.type != "arrow" && attack_queue[1].type == "arrow") {
 			switchAttackMode();
-			addNextAttack();
 		}
 
 	} else if (this.state == "gameover") {

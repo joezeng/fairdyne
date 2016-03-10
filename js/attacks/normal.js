@@ -128,10 +128,20 @@ var ag6 = {
 };
 
 
+
+var sp1 = {
+	type: "spear",
+	next_time: 10,
+	spear_interval: 600,
+	next_sets: ["ag7"],
+};
+
+
+
 var ag7 = {
 	type: "arrow",
 	id: "ag7",
-	next_time: 3.75,
+	next_time: 2.75,
 	arrows: [
 		{ direction: "1", turntype: 0, target_time: 0.0, speed: 300 },
 		{ direction: "3", turntype: 0, target_time: 0.25, speed: 300 },
@@ -149,7 +159,7 @@ var ag7 = {
 var ag8 = {
 	type: "arrow",
 	id: "ag8",
-	next_time: 3.5,
+	next_time: 2.5,
 	arrows: [
 		{ direction: "3", turntype: 0, target_time: 0.0, speed: 300 },
 		{ direction: "4", turntype: 0, target_time: 0.25, speed: 300 },
@@ -167,7 +177,7 @@ var ag8 = {
 var ag9 = {
 	type: "arrow",
 	id: "ag9",
-	next_time: 3.5,
+	next_time: 3.6,
 	arrows: [
 		{ direction: "2", turntype: 0, target_time: 0.0, speed: 400 },
 		{ direction: "2", turntype: 0, target_time: 0.2, speed: 320 },
@@ -187,7 +197,7 @@ var ag9 = {
 var ag10 = {
 	type: "arrow",
 	id: "ag10",
-	next_time: 3.5,
+	next_time: 3.75,
 	arrows: [
 		{ direction: "4", turntype: 0, target_time: 0.0, speed: 200 },
 		{ direction: "2", turntype: 0, target_time: 0.25, speed: 200 },
@@ -202,13 +212,28 @@ var ag10 = {
 		{ direction: "4", turntype: 0, target_time: 2.5, speed: 400 },
 		{ direction: "2", turntype: 0, target_time: 2.75, speed: 400 },
 	],
-	next_sets: ["sp1"],
+	next_sets: ["sp2"],
 };
 
 
-var sp1 = {
+var sp2 = {
 	type: "spear",
 	next_time: 10,
-	spear_interval: 600,
-	next_sets: ["ag7"],
+	spear_interval: 500,
+	next_sets: ["ag11"],
+};
+
+
+var ag11 = {
+	type: "arrow",
+	id: "ag11",
+	next_time: 3.2,
+	arrows: [
+		{ direction: "4", turntype: 0, target_time: 0.0, speed: 200 },
+		{ direction: "2", turntype: 0, target_time: 0.4, speed: 200 },
+		{ direction: "4", turntype: 0, target_time: 0.8, speed: 200 },
+		{ direction: "2", turntype: 0, target_time: 1.2, speed: 200 },
+		{ direction: "4", turntype: 2, target_time: 1.6, speed: 300 },
+	],
+	next_sets: ["sp2"],
 };

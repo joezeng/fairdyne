@@ -46,6 +46,8 @@ function switchAttackMode() {
 			break;
 	}
 
+	addNextAttack();
+
 }
 
 
