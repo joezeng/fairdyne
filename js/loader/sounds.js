@@ -2,6 +2,7 @@ var sounds_loaded = {
 	10: false,
 	11: false,
 	12: false,
+	101: false,
 	111: false,
 	112: false,
 	113: false,
@@ -47,6 +48,14 @@ var bgm_undyne2 = new Howl({
 });
 
 
+
+
+var se_text_advance = new Howl({
+	onload: reg_sound(101),
+	src: "audio/se/000029ec.wav",
+	loop: false,
+	volume: 0.7,
+});
 
 
 

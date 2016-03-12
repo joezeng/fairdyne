@@ -38,7 +38,8 @@ function update() {
 	if (game_started == true) requestAnimationFrame(update);
 
 	var current_time = new Date().getTime();
-	var delta_ms = current_time - update_time;
+	var delta_ms = clamp(current_time - update_time, 0, 100);
+
 	update_time = current_time;
 
 	scene.update(delta_ms);

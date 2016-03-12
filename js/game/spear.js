@@ -39,13 +39,15 @@ Spear.prototype.update = function(delta_ms) {
 			Math.pow(interp_clamp(this.active_time, 0, this.appear_time, 1, 0), 2);
 		this.sprite.alpha = this.active_time / this.appear_time;
 	} else {
-		if (this.shot == false) {
-			this.shot = true;
-			se_spear_shoot.play();
-		}
 		this.sprite.alpha = 1;
 		this.pos_x += this.direction.x * SPEAR_SPEED * delta_ms;
 		this.pos_y += this.direction.y * SPEAR_SPEED * delta_ms;
+	}
+
+	// the sound effect is delayed by about 0.1s, so we do this to line them up.
+	if (this.active_time >= this.appear_time && this.shot == false) {
+		this.shot = true;
+		se_spear_shoot.play();
 	}
 
 	this.sprite.position.set(this.pos_x, this.pos_y);

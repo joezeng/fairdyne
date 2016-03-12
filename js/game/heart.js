@@ -55,6 +55,15 @@ function Heart() {
 
 }
 
+Heart.prototype.setMaxHP = function(maxhp) {
+
+	this.maxhp = maxhp;
+	this.hp = maxhp;
+
+	hp_text.text = _.padStart(this.hp, 2, "0") + " / " + _.padStart(this.maxhp, 2, "0");
+
+}
+
 
 Heart.prototype.update = function(delta_ms) {
 

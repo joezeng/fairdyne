@@ -77,9 +77,10 @@ function addNextAttack (attack) {
 
 	var attack_info = { type: next_attack.type, time: next_attack.next_time };
 
-	if (new_attack.type == "spear") {
+	if (new_attack.type == "spear")
 		attack_info.interval = new_attack.spear_interval;
-	}
+	if (new_attack.buffer_time)
+		attack_info.buffer_time = new_attack.buffer_time;
 
 	attack_queue.push(attack_info);
 

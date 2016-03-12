@@ -126,6 +126,11 @@ function addArrowGroup (arrow_group) {
 
 		if (direction == "R") { // random
 			direction = 1 + Math.floor(Math.random() * 4);
+		} else if (direction == "D") { // random that's _not_ the next one
+			var non = last_direction;
+			do {
+				direction = 1 + Math.floor(Math.random() * 4);
+			} while (direction == non);
 		} else if (direction[0] == "+") { // relative to last one
 			var diff = parseInt(direction[1]);
 			direction = (last_direction + 3 + diff) % 4 + 1;
@@ -134,6 +139,11 @@ function addArrowGroup (arrow_group) {
 			direction = (last_direction + 3 + diff) % 4 + 1;
 		} else if (direction[0] == "$") { // fixed; isn't affected by global random
 			direction = parseInt(direction[1]);
+		} else if (direction[0] == "N") { // random that's _not_ the specified one
+			var non = parseInt(direction[1]);
+			do {
+				direction = 1 + Math.floor(Math.random() * 4);
+			} while (direction == non);
 		} else if (typeof direction === "string") {
 			direction = (rand_dir + 3 + parseInt(direction)) % 4 + 1;
 		}

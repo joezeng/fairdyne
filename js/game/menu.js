@@ -5,6 +5,8 @@ function Menu() {
 	this.shown = false;
 	this.shown_done = false;
 
+	this.text_counter = 0;
+
 	this.current_option = 0;
 	this.options = ["normal", "hard", "genocide"];
 
@@ -41,6 +43,12 @@ Menu.prototype.update = function(delta_ms) {
 	this.hard_text_chars += Math.random() * 0.05 * delta_ms;
 	this.genocide_text_chars += Math.random() * 0.05 * delta_ms;
 
+	this.text_counter += delta_ms;
+	while (this.text_counter >= 40) {
+		this.text_counter -= 40;
+		se_text_advance.play();
+	}
+
 	if (this.normal_text_chars >= this.normal_text_text.length &&
 		this.hard_text_chars >= this.hard_text_text.length &&
 		this.genocide_text_chars >= this.genocide_text_text.length) {
@@ -58,6 +66,10 @@ Menu.prototype.show = function() {
 	gamestate.state = "menu";
 
 	this.select_text.visible = true;
+
+	this.normal_text_chars = 0;
+	this.hard_text_chars = 0;
+	this.genocide_text_chars = 0;
 
 	this.shown = true;
 	heart.sprite.visible = true;
@@ -87,6 +99,23 @@ Menu.prototype.hide = function() {
 
 }
 
+Menu.prototype.updateLove = function() {
+	switch (this.current_option) {
+		case 0:
+			love_text.text = "LV 1";
+			heart.setMaxHP(4);
+			break;
+		case 1:
+			love_text.text = "LV 10";
+			heart.setMaxHP(4);
+			break;
+		case 2:
+			love_text.text = "LV 99";
+			heart.setMaxHP(99);
+			break;
+	}
+}
+
 Menu.prototype.moveUp = function() {
 	se_menu_move.play();
 	this.current_option -= 1;
@@ -94,6 +123,7 @@ Menu.prototype.moveUp = function() {
 		this.current_option += this.options.length;
 	}
 	this.updateHeartPosition();
+	this.updateLove();
 }
 
 Menu.prototype.moveDown = function() {
@@ -103,6 +133,7 @@ Menu.prototype.moveDown = function() {
 		this.current_option -= this.options.length;
 	}
 	this.updateHeartPosition();
+	this.updateLove();
 }
 
 Menu.prototype.select = function() {

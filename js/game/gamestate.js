@@ -78,7 +78,9 @@ GameState.prototype.restartGame = function(difficulty) {
 	arrows = [];
 	spears = [];
 	next_attack = null;
+
 	heart.hp = heart.maxhp;
+	hp_text.text = _.padStart(heart.hp, 2, "0") + " / " + _.padStart(heart.maxhp, 2, "0");
 
 	switch (difficulty) {
 		case "normal":
@@ -199,18 +201,12 @@ GameState.prototype.update = function(delta_ms) {
 			}
 		}
 
-		// TODO: factor out this really convoluted if statement.
-		if (current_attack.time <= 0.4 && current_attack.type != attack_queue[1].type
-				&& !(current_attack.type != "arrow" && attack_queue[1].type == "arrow") ||
-			current_attack.time <= 2.4 && current_attack.type != "null" && current_attack.type != "arrow"
-				&& attack_queue[1].type == "arrow") {
-			undyne.swing_arm();
-		}
+		if (current_attack.time <= 0.4 + (current_attack.buffer_time || 0) &&
+			current_attack.type != attack_queue[1].type)
+				undyne.swing_arm();
 
-		if (current_attack.time <= 0 ||
-			current_attack.time <= 2 && current_attack.type != "arrow" && attack_queue[1].type == "arrow") {
-			switchAttackMode();
-		}
+		if (current_attack.time <= (current_attack.buffer_time || 0))
+				switchAttackMode();
 
 	} else if (this.state == "gameover") {
 

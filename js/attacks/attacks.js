@@ -23,6 +23,12 @@ var attacks = {
 
 	g_ag1: g_ag1,
 	g_sp1: g_sp1,
+	g_ag2: g_ag2,
 	g_sp2: g_sp2,
+	g_ag3: g_ag3,
+	g_sp3: g_sp3,
+	g_ag4: g_ag4,
+	g_sp4: g_sp4,
+	g_ag5: g_ag5,
 
 };

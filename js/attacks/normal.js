@@ -132,6 +132,7 @@ var ag6 = {
 var sp1 = {
 	type: "spear",
 	next_time: 10,
+	buffer_time: 2,
 	spear_interval: 600,
 	next_sets: ["ag7"],
 };
@@ -141,7 +142,7 @@ var sp1 = {
 var ag7 = {
 	type: "arrow",
 	id: "ag7",
-	next_time: 2.75,
+	next_time: 4.0,
 	arrows: [
 		{ direction: "1", turntype: 0, target_time: 0.0, speed: 300 },
 		{ direction: "3", turntype: 0, target_time: 0.25, speed: 300 },
@@ -219,6 +220,7 @@ var ag10 = {
 var sp2 = {
 	type: "spear",
 	next_time: 10,
+	buffer_time: 2,
 	spear_interval: 500,
 	next_sets: ["ag11"],
 };
