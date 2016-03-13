@@ -158,6 +158,7 @@ SplashScene.prototype.update = function(delta_ms) {
 			splash_stage.addChildAt(this.undyne_sprite, 0);
 			splash_stage.addChildAt(this.undyne_hair_sprite, 0);
 			this.undyne_hair_sprite.play();
+			document.getElementById("fairdyne").innerHTML = "Unfair Undyne";
 		}
 		this.un_sprite.position.y = -780 + 1060 * Math.pow(interp_clamp(scene.scene_time, 9000, 10500, 0, 1), 2);
 		this.un_sprite.position.x = 140 + 20 * Math.pow(interp_clamp(scene.scene_time, 10500, 10700, 1, 0), 2);
