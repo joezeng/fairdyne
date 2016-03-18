@@ -25,7 +25,7 @@ Scene.prototype.selectScene = function(name, data) {
 		case "gameplay":
 			undyne.queue_text([
 				{ text: "So you want to spar\nwith me, huh?" },
-				{ text: "Well you'd better\ngive it all you've\ngot!" },
+				{ text: "Well you'd better\nGET READY TO\nDIE!" },
 			], menu.show.bind(menu));
 			gameplay_stage.alpha = 0;
 			break;
