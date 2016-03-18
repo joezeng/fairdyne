@@ -6,6 +6,8 @@ var attack_queue = [];
 var spear_interval = 400;
 var spear_time = 0;
 
+var pike_interval = 400;
+var pike_time = 0;
 
 function switchAttackMode() {
 
@@ -22,9 +24,12 @@ function switchAttackMode() {
 			box.dest_right = 320 + SHIELD_DISTANCE;
 			box.dest_top = 240 - SHIELD_DISTANCE;
 			box.dest_bottom = 240 + SHIELD_DISTANCE;
-			// get rid of all spears
+			// get rid of all spears and pikes
 			for (var a = 0; a < spears.length; ++a) {
 				spears[a].removed = true;
+			}
+			for (var a = 0; a < pikes.length; ++a) {
+				pikes[a].removed = true;
 			}
 			for (var a = 0; a < arrows.length; ++a) {
 				arrows[a].sprite.visible = true;
@@ -39,6 +44,19 @@ function switchAttackMode() {
 			box.dest_top = 200;
 			box.dest_bottom = 360;
 			spear_time = spear_interval + borrowed_time;
+			for (var a = 0; a < arrows.length; ++a) {
+				arrows[a].sprite.visible = false;
+			}
+			heart.setColour("red");
+			break;
+		case "pike":
+			pike_interval = current_attack.interval;
+			undyne.opacity_g.alpha = 0;
+			box.dest_left = 288;
+			box.dest_right = 352;
+			box.dest_top = 280;
+			box.dest_bottom = 360;
+			pike_time = pike_interval + borrowed_time;
 			for (var a = 0; a < arrows.length; ++a) {
 				arrows[a].sprite.visible = false;
 			}
@@ -79,6 +97,10 @@ function addNextAttack (attack) {
 
 	if (new_attack.type == "spear")
 		attack_info.interval = new_attack.spear_interval;
+	if (new_attack.type == "pike") {
+		attack_info.interval = new_attack.pike_interval;
+		attack_info.down = new_attack.down;
+	}
 	if (new_attack.buffer_time)
 		attack_info.buffer_time = new_attack.buffer_time;
 

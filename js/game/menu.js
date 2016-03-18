@@ -24,6 +24,8 @@ function Menu() {
 	this.genocide_text.position.set(80, 364);
 	this.genocide_text_chars = 0;
 
+	this.easy_mode_enabled = true;
+
 	this.normal_text_text = "I want to PET THE VEGETABLES";
 	this.hard_text_text = "I want to FIGHT THE TRUE HERO";
 	this.genocide_text_text = "I want to ATONE FOR MY SINS";
@@ -86,6 +88,14 @@ Menu.prototype.show = function() {
 
 }
 
+Menu.prototype.disableEasyMode = function() {
+
+	if (this.current_option == 0) this.current_option = 1;
+	this.normal_text.alpha = 0.2;
+	this.easy_mode_enabled = false;
+
+}
+
 Menu.prototype.hide = function() {
 
 	gamestate.state = "none";
@@ -117,23 +127,39 @@ Menu.prototype.updateLove = function() {
 }
 
 Menu.prototype.moveUp = function() {
+
 	se_menu_move.play();
 	this.current_option -= 1;
-	if (this.current_option < 0){
+
+	if (this.current_option < 0) {
 		this.current_option += this.options.length;
 	}
+
+	if (this.easy_mode_enabled == false && this.current_option == 0) {
+		this.current_option = 2;
+	}
+
 	this.updateHeartPosition();
 	this.updateLove();
+
 }
 
 Menu.prototype.moveDown = function() {
+
 	se_menu_move.play();
 	this.current_option += 1;
+
 	if (this.current_option >= this.options.length){
 		this.current_option -= this.options.length;
 	}
+
+	if (this.easy_mode_enabled == false && this.current_option == 0) {
+		this.current_option = 1;
+	}
+
 	this.updateHeartPosition();
 	this.updateLove();
+
 }
 
 Menu.prototype.select = function() {

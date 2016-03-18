@@ -28,7 +28,12 @@ var attacks = {
 	g_ag3: g_ag3,
 	g_sp3: g_sp3,
 	g_ag4: g_ag4,
-	g_sp4: g_sp4,
+	g_pk1: g_pk1,
 	g_ag5: g_ag5,
+	g_pk2: g_pk2,
+	g_ag6: g_ag6,
+
+	pk1: pk1,
+	ca1: ca1,
 
 };

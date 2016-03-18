@@ -31,7 +31,7 @@ var g_ag1 = {
 var g_sp1 = {
 	type: "spear",
 	next_time: 1.6,
-	buffer_time: 0.4,
+	buffer_time: 0.3,
 	spear_interval: 300,
 	next_sets: ["g_ag2"],
 };
@@ -197,21 +197,69 @@ var g_ag4 = {
 		{ direction: "4", turntype: 0, target_time: 6.2, speed: 400 },
 		{ direction: "4", turntype: 0, target_time: 6.3, speed: 400 },
 	],
-	next_sets: ["g_sp4"],
+	next_sets: ["g_pk1"],
 };
 
-
-
-var g_sp4 = {
-	type: "spear",
+var g_pk1 = {
+	type: "pike",
 	next_time: 6.4,
 	buffer_time: 0.8,
-	spear_interval: 200,
+	pike_interval: 400,
+	down: false,
 	next_sets: ["g_ag5"],
 };
 
-
 var g_ag5 = {
+	type: "arrow",
+	id: "g_ag5",
+	next_time: 6.4,
+	arrows: [
+		{ direction: "R", turntype: 0, target_time: 0.0, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 0.2, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 0.4, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 0.6, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 0.8, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 1.0, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 1.2, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 1.4, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 1.6, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 1.8, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 2.0, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 2.2, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 2.4, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 2.6, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 2.8, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 3.0, speed: 200 },
+		{ direction: "R", turntype: 2, target_time: 3.2, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 3.4, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 3.6, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 3.8, speed: 200 },
+		{ direction: "R", turntype: 3, target_time: 4.0, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 4.2, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 4.4, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 4.6, speed: 200 },
+		{ direction: "R", turntype: 2, target_time: 4.8, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 5.0, speed: 200 },
+		{ direction: "R", turntype: 3, target_time: 5.2, speed: 200 },
+		{ direction: "R", turntype: 0, target_time: 5.4, speed: 200 },
+		{ direction: "R", turntype: 2, target_time: 5.6, speed: 200 },
+		{ direction: "R", turntype: 3, target_time: 5.8, speed: 200 },
+		{ direction: "R", turntype: 2, target_time: 6.0, speed: 200 },
+		{ direction: "R", turntype: 3, target_time: 6.2, speed: 200 },
+	],
+	next_sets: ["g_pk2"],
+};
+
+var g_pk2 = {
+	type: "pike",
+	next_time: 6.4,
+	buffer_time: 0.8,
+	pike_interval: 400,
+	down: true,
+	next_sets: ["g_ag6"],
+};
+
+var g_ag6 = {
 	type: "arrow",
 	id: "g_ag4",
 	next_time: 6.4,
@@ -282,4 +330,12 @@ var g_ag5 = {
 		{ direction: "2", turntype: 3, target_time: 6.3, speed: 400 },
 	],
 	next_sets: ["g_sp3"],
+};
+
+var g_sp4 = {
+	type: "spear",
+	next_time: 6.4,
+	buffer_time: 0.8,
+	spear_interval: 200,
+	next_sets: ["g_ag5"],
 };

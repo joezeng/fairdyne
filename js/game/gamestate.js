@@ -153,11 +153,45 @@ GameState.prototype.endGame = function() {
 			bgm_undyne2.stop();	break;
 	}
 
-	undyne.queue_text([
-		{ text: "Is that the best\nyou've got?" },
-		{ text: "Pathetic. I know you\ncan do better!" },
-	], menu.show.bind(menu));
+	undyne.queue_text(endGameText(this.difficulty, this.elapsed_time), menu.show.bind(menu));
 
+}
+
+function endGameText(diff, surv_time) {
+	switch (diff) {
+		case "normal":
+			if (surv_time < 60000)
+				return [
+					{ text: "Is that the best\nyou've got?" },
+					{ text: "Pathetic. I know you\ncan do better!" },
+				];
+			else if (surv_time < 120000)
+				return [
+					{ text: "Good, but still\nnot good enough." },
+					{ text: "Keep trying, human!\nReach for the top!" },
+				];
+			else {
+				menu.disableEasyMode();
+				return [
+					{ text: "You're doing well,\nbut only because I'm\ngoing easy on you." },
+					{ text: "It won't be so easy\nnext time!" },
+				];
+			}
+		case "hard":
+			return [
+				{ text: "Is that the best\nyou've got?" },
+				{ text: "Pathetic. I know you\ncan do better!" },
+			];
+		case "genocide":
+			return [
+				{ text: "You're going to have\nto try a little\nharder than THAT." },
+			];
+		default:
+			return [
+				{ text: "Is that the best\nyou've got?" },
+				{ text: "Pathetic. I know you\ncan do better!" },
+			];
+	}
 }
 
 
@@ -190,6 +224,15 @@ GameState.prototype.update = function(delta_ms) {
 			}
 		}
 
+		// pikes.update(delta_ms)
+		for (var a = 0; a < pikes.length; ++a) {
+			pikes[a].update(delta_ms);
+			if (pikes[a].removed) {
+				gameplay_stage.removeChild(pikes[a].sprite);
+				pikes.splice(a, 1);
+			}
+		}
+
 		var current_attack = attack_queue[0];
 		current_attack.time -= delta_ms / 1000;
 
@@ -198,6 +241,12 @@ GameState.prototype.update = function(delta_ms) {
 			if (spear_time <= 0) {
 				spear_time += spear_interval;
 				addNewSpear();
+			}
+		} else if (current_attack.type == "pike") {
+			pike_time -= delta_ms;
+			if (pike_time <= 0) {
+				pike_time += pike_interval;
+				addNewPike();
 			}
 		}
 

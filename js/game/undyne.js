@@ -22,6 +22,7 @@ function Undyne() {
 	this.text_queue = [];
 	this.text_queue_callback = null;
 	this.text_chars = 0;
+	this.text_se = se_undyne;
 	this.cps = 25;
 
 	this.sprite = new PIXI.Container();
@@ -116,6 +117,11 @@ Undyne.prototype.selectNextText = function() {
 		this.sbtext = this.text_queue.shift();
 		this.text_chars = 0;
 		this.text_state = "talking";
+		if (this.sbtext.se) {
+			this.text_se = this.sbtext.se;
+		} else {
+			this.text_se = se_undyne;
+		}
 	} else {
 		this.sbtext = null;
 		this.speech_bubble.visible = false;
@@ -132,7 +138,7 @@ Undyne.prototype.advanceTextChars = function(text_chars) {
 
 	var char = this.sbtext.text[Math.floor(text_chars)];
 	if (!(char == " " || char == "\n")) {
-		se_undyne.play();
+		this.text_se.play();
 	}
 	this.speech_bubble_text.text = this.sbtext.text.substr(0, Math.floor(text_chars));
 
