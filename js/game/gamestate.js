@@ -178,10 +178,21 @@ function endGameText(diff, surv_time) {
 				];
 			}
 		case "hard":
-			return [
-				{ text: "Is that the best\nyou've got?" },
-				{ text: "Pathetic. I know you\ncan do better!" },
-			];
+			if (surv_time < 60000)
+				return [
+					{ text: "Is that the best\nyou've got?" },
+					{ text: "Pathetic. I know you\ncan do better!" },
+				];
+			else if (surv_time < 120000)
+				return [
+					{ text: "Good, but still\nnot good enough." },
+					{ text: "Keep trying, human!\nReach for the top!" },
+				];
+			else
+				return [
+					{ text: "" },
+					{ text: },
+				];
 		case "genocide":
 			return [
 				{ text: "You're going to have\nto try a little\nharder than THAT." },

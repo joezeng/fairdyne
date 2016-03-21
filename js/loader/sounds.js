@@ -8,6 +8,7 @@ var sounds_loaded = {
 	113: false,
 	114: false,
 	115: false,
+	116: false,
 	120: false,
 	121: false,
 	141: false,
@@ -93,6 +94,14 @@ var se_attack = new Howl({
 	loop: false,
 	volume: 0.7,
 });
+
+var se_pike_shoot = new Howl({
+	onload: reg_sound(116),
+	src: "audio/se/0000299c.wav",
+	loop: false,
+	volume: 0.7,
+});
+
 
 
 var se_menu_move = new Howl({

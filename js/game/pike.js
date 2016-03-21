@@ -48,7 +48,7 @@ Pike.prototype.update = function(delta_ms) {
 	// the sound effect is delayed by about 0.1s, so we do this to line them up.
 	if (this.active_time >= this.appear_time && this.shot == false) {
 		this.shot = true;
-		se_spear_shoot.play();
+		se_pike_shoot.play();
 	}
 
 	this.sprite.position.set(this.pos_x, this.pos_y);
@@ -78,12 +78,18 @@ function addNewPike() {
 	var up_pike, down_pike;
 
 	do {
-		var up_pike = Math.floor(Math.random() * 3) + 1
-	} while (up_pike == last_up_pike);
 
-	do {
-		var down_pike = Math.floor(Math.random() * 3) + 1
-	} while (down_pike == last_down_pike || down_pike == up_pike);
+		do {
+			up_pike = Math.floor(Math.random() * 3) + 1
+		} while (up_pike == last_up_pike);
+
+		do {
+			down_pike = Math.floor(Math.random() * 3) + 1
+		} while (down_pike == last_down_pike);
+
+	} while (forcedToMoveTwoLanes(last_up_pike, last_down_pike, up_pike, down_pike));
+
+	// prevent situations where the heart is forced to move from the left column to the right column
 
 	last_up_pike = up_pike;
 	last_down_pike = down_pike;
@@ -91,4 +97,18 @@ function addNewPike() {
 	pikes.push(new Pike({ appear_time: pike_interval * 2, initial_position: last_up_pike, direction: "up" }));
 	if (attack_queue[0].down)
 		pikes.push(new Pike({ appear_time: pike_interval * 2, initial_position: last_down_pike, direction: "down" }));
+}
+
+
+function forcedToMoveTwoLanes(last_up, last_down, up, down) {
+
+	if (last_up != last_down && last_up != 1 && last_down != 1 &&
+		up != down && up != 3 && down != 3) {
+		return true;
+	} else if (last_up != last_down && last_up != 3 && last_down != 3 &&
+		up != down && up != 1 && down != 1) {
+		return true;
+	}
+	return false;
+
 }
