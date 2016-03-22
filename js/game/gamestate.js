@@ -190,8 +190,8 @@ function endGameText(diff, surv_time) {
 				];
 			else
 				return [
-					{ text: "" },
-					{ text: },
+					{ text: "You're doing well." },
+					{ text: "But you can still\ndo better! Let me\ngo harder on you!" },
 				];
 		case "genocide":
 			return [
