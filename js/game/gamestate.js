@@ -1,6 +1,8 @@
 var time_text;
 var love_text;
 
+var april_fools = false;
+
 function GameState() {
 
 	this.state = "menu";
@@ -69,6 +71,25 @@ GameState.prototype.handleInput = function(key) {
 
 GameState.prototype.restartGame = function(difficulty) {
 
+	var date = new Date();
+
+	if (april_fools || date.getMonth() == 3 && date.getDate() == 1) {
+		if (april_fools == false) {
+			heart.setMaxHP(99);
+		} else {
+			switch(difficulty){
+				case "normal":
+					heart.setMaxHP(99); break;
+				case "hard":
+					heart.setMaxHP(20); break;
+				case "genocide":
+					heart.setMaxHP(4); break;
+			}
+		}
+		difficulty = "aprilfools";
+		april_fools = true;
+	}
+
 	this.difficulty = difficulty;
 
 	this.elapsed_time = 0;
@@ -88,6 +109,7 @@ GameState.prototype.restartGame = function(difficulty) {
 		case "hard":
 			heart.invincibility_increment = 500; break;
 		case "genocide":
+		case "aprilfools":
 			heart.invincibility_increment = 100; break;
 	}
 
@@ -105,6 +127,11 @@ GameState.prototype.restartGame = function(difficulty) {
 			attack_queue = [ { type: "null", time: 6.4 } ];
 			addNextAttack(g_ag1);
 			break;
+		case "aprilfools":
+			attack_queue_time = 6.4;
+			attack_queue = [ { type: "null", time: 6.4 } ];
+			addNextAttack(af_ag1);
+			break;
 	}
 
 
@@ -120,6 +147,7 @@ GameState.prototype.restartGame = function(difficulty) {
 		case "hard":
 			bgm_undyne1.play(); break;
 		case "genocide":
+		case "aprilfools":
 			bgm_undyne2.play(); break;
 	}
 
@@ -150,7 +178,18 @@ GameState.prototype.endGame = function() {
 		case "hard":
 			bgm_undyne1.stop(); break;
 		case "genocide":
+		case "aprilfools":
 			bgm_undyne2.stop();	break;
+	}
+
+	if (this.difficulty == "aprilfools") {
+		document.getElementById("fairdyne").innerHTML = "APRIL FOOLS";
+		menu.normal_text_text = "I want to BE AN APRIL FOOL";
+		menu.hard_text_text = "I want to BE A SUPER APRIL FOOL";
+		menu.genocide_text_text = "I want to PLAY THIS MODE FOR REAL";
+		menu.normal_text.text = "I want to BE AN APRIL FOOL";
+		menu.hard_text.text = "I want to BE A SUPER APRIL FOOL";
+		menu.genocide_text.text = "I want to PLAY THIS MODE FOR REAL";
 	}
 
 	undyne.queue_text(endGameText(this.difficulty, this.elapsed_time), menu.show.bind(menu));
@@ -196,6 +235,10 @@ function endGameText(diff, surv_time) {
 		case "genocide":
 			return [
 				{ text: "You're going to have\nto try a little\nharder than THAT." },
+			];
+		case "aprilfools":
+			return [
+				{ text: "APRIL FOOLS,\nMOTHERFUCKERS!" },
 			];
 		default:
 			return [

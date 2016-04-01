@@ -37,6 +37,14 @@ var attacks = {
 	g_pk3: g_pk3,
 	g_ag8: g_ag8,
 
+	af_ag1: af_ag1,
+	af_ag2: af_ag2,
+	af_ag3: af_ag3,
+	af_ag4: af_ag4,
+	af_ag5: af_ag5,
+	af_sp1: af_sp1,
+	af_sp2: af_sp2,
+
 	pk1: pk1,
 	ca1: ca1,
 
