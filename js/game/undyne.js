@@ -32,6 +32,7 @@ function Undyne() {
 	this.hair_sprite.anchor.set(1, 0.5);
 	this.hair_sprite.scale.set(2, 2);
 	this.hair_sprite.position.set(310, 40);
+	this.hair_sprite.animationSpeed = 4/30;
 
 	this.head_sprite = new PIXI.Sprite(undyne_head_textures[1]);
 	this.head_sprite.anchor.set(0.5, 0.5);
