@@ -199,7 +199,13 @@ GameState.prototype.endGame = function() {
 function endGameText(diff, surv_time) {
 	switch (diff) {
 		case "normal":
-			if (surv_time < 60000)
+			if (surv_time < 6890)
+				return [
+					{ text: "Look, I gave you\n a shield for one\n puropse and that only."}
+					{ text: "To DEFEND YOURSELF."}
+					{ text: "Can't get more\n straightforward\n than that."}
+				];
+			else if (surv_time < 60000)
 				return [
 					{ text: "Is that the best\nyou've got?" },
 					{ text: "Pathetic. I know you\ncan do better!" },
