@@ -50,7 +50,7 @@ function SplashScene() {
 	this.undyne_hair_sprite.anchor.set(1, 0.5);
 	this.undyne_hair_sprite.position.set(330, 360);
 	this.undyne_hair_sprite.scale.set(2, 2);
-	this.undyne_hair_sprite.animation_speed = 0.333333;
+	this.undyne_hair_sprite.animationSpeed = 4/30;
 
 	this.press_start_text = new PIXI.extras.BitmapText("press z to start", { font: "15px Numbers", align: "center" });
 	this.press_start_text.position.set(210, 360);

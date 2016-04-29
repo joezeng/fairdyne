@@ -1,7 +1,7 @@
 var undyne;
 
 var undyne_texture;
-var undyne_head_textures = Array(2);
+var undyne_head_textures = Array(4);
 var undyne_breastplate_texture;
 var undyne_skirt_texture;
 var undyne_legs_texture;
@@ -32,6 +32,7 @@ function Undyne() {
 	this.hair_sprite.anchor.set(1, 0.5);
 	this.hair_sprite.scale.set(2, 2);
 	this.hair_sprite.position.set(310, 40);
+	this.hair_sprite.animationSpeed = 4/30;
 
 	this.head_sprite = new PIXI.Sprite(undyne_head_textures[1]);
 	this.head_sprite.anchor.set(0.5, 0.5);
@@ -122,7 +123,13 @@ Undyne.prototype.selectNextText = function() {
 		} else {
 			this.text_se = se_undyne;
 		}
+		if (this.sbtext.face) {
+			this.head_sprite.texture = undyne_head_textures[this.sbtext.face];
+		} else {
+			this.head_sprite.texture = undyne_head_textures[1];
+		}
 	} else {
+		this.head_sprite.texture = undyne_head_textures[1];
 		this.sbtext = null;
 		this.speech_bubble.visible = false;
 		this.speech_bubble_text.visible = false;
