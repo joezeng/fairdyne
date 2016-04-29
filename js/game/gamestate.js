@@ -185,10 +185,10 @@ GameState.prototype.endGame = function() {
 	if (this.difficulty == "aprilfools") {
 		document.getElementById("fairdyne").innerHTML = "APRIL FOOLS";
 		menu.normal_text_text = "I want to BE AN APRIL FOOL";
-		menu.hard_text_text = "I want to BE A SUPER APRIL FOOL";
+		menu.hard_text_text = "I want OUT OF THIS MODE";
 		menu.genocide_text_text = "I want to PLAY THIS MODE FOR REAL";
 		menu.normal_text.text = "I want to BE AN APRIL FOOL";
-		menu.hard_text.text = "I want to BE A SUPER APRIL FOOL";
+		menu.hard_text.text = "I want OUT OF THIS MODE";
 		menu.genocide_text.text = "I want to PLAY THIS MODE FOR REAL";
 	}
 
@@ -196,16 +196,34 @@ GameState.prototype.endGame = function() {
 
 }
 
+var annoyance = 0;
+
 function endGameText(diff, surv_time) {
 	switch (diff) {
 		case "normal":
-			if (surv_time < 6890)
-				return [
-					{ text: "Look, I gave you\n a shield for one\n puropse and that only."}
-					{ text: "To DEFEND YOURSELF."}
-					{ text: "Can't get more\n straightforward\n than that."}
-				];
-			else if (surv_time < 60000)
+			if (surv_time < 6890) {
+				++annoyance;
+				switch (annoyance) {
+					case 1:
+						return [
+							{ text: "Look, I gave you\na shield for one\npurpose and one\npurpose only."},
+							{ text: "To DEFEND YOURSELF."},
+							{ text: "Can't get more\nstraightforward\nthan that."},
+						];
+					case 2:
+						return [
+							{ text: "Are you just doing\nthat on purpose?", face: 2 },
+							{ text: "Because it's not\nfunny. Stop it." },
+						];
+					default:
+						menu.disableEasyMode();
+						return [
+							{ text: "NGAHHHHHHH!", face: 3 },
+							{ text: "If you're not going\nto take this\nseriously...", face: 1 },
+							{ text: "I'm just going to\nhave to force you\nto try harder!", face: 3 },
+						];
+				}
+			} else if (surv_time < 60000)
 				return [
 					{ text: "Is that the best\nyou've got?" },
 					{ text: "Pathetic. I know you\ncan do better!" },

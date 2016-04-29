@@ -25,6 +25,8 @@ graphics_loader
 	.add("undyne_hair4", "img/undyne_hair4.png")
 	.add("undyne_head1", "img/undyne_head1.png")
 	.add("undyne_head2", "img/undyne_head2.png")
+	.add("undyne_head3", "img/undyne_head_annoyed.png")
+	.add("undyne_head4", "img/undyne_head_angry.png")
 	.add("undyne_intro_hairless", "img/undyne_intro_hairless.png")
 	.add("undyne_leftarm", "img/undyne_leftarm.png")
 	.add("undyne_legs", "img/undyne_legs.png")
@@ -76,6 +78,8 @@ function process_graphics(resources) {
 
 	undyne_head_textures[0] = resources["undyne_head1"].texture;
 	undyne_head_textures[1] = resources["undyne_head2"].texture;
+	undyne_head_textures[2] = resources["undyne_head3"].texture;
+	undyne_head_textures[3] = resources["undyne_head4"].texture;
 	for (var a = 0; a < undyne_head_textures.length; ++a) {
 		undyne_head_textures[a].baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
 	}
