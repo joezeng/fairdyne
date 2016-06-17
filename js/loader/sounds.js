@@ -53,7 +53,7 @@ var bgm_undyne2 = new Howl({
 
 var se_text_advance = new Howl({
 	onload: reg_sound(101),
-	src: "audio/se/000029ec.wav",
+	src: "/res/undertale/se/000029ec.wav",
 	loop: false,
 	volume: 0.7,
 });
@@ -62,42 +62,42 @@ var se_text_advance = new Howl({
 
 var se_arrow_ding = new Howl({
 	onload: reg_sound(111),
-	src: "audio/se/000029aa.wav",
+	src: "/res/undertale/se/000029aa.wav",
 	loop: false,
 	volume: 0.7,
 });
 
 var se_damage = new Howl({
 	onload: reg_sound(112),
-	src: "audio/se/000029c3.wav",
+	src: "/res/undertale/se/000029c3.wav",
 	loop: false,
 	volume: 0.7,
 });
 
 var se_spear_appear = new Howl({
 	onload: reg_sound(113),
-	src: "audio/se/0000299b.wav",
+	src: "/res/undertale/se/0000299b.wav",
 	loop: false,
 	volume: 0.7,
 });
 
 var se_spear_shoot = new Howl({
 	onload: reg_sound(114),
-	src: "audio/se/000029a2.wav",
+	src: "/res/undertale/se/000029a2.wav",
 	loop: false,
 	volume: 0.7,
 });
 
 var se_attack = new Howl({
 	onload: reg_sound(115),
-	src: "audio/se/000029c1.wav",
+	src: "/res/undertale/se/000029c1.wav",
 	loop: false,
 	volume: 0.7,
 });
 
 var se_pike_shoot = new Howl({
 	onload: reg_sound(116),
-	src: "audio/se/0000299c.wav",
+	src: "/res/undertale/se/0000299c.wav",
 	loop: false,
 	volume: 0.7,
 });
@@ -106,14 +106,14 @@ var se_pike_shoot = new Howl({
 
 var se_menu_move = new Howl({
 	onload: reg_sound(120),
-	src: "audio/se/00002a00.wav",
+	src: "/res/undertale/se/00002a00.wav",
 	loop: false,
 	volume: 0.7,
 });
 
 var se_menu_select = new Howl({
 	onload: reg_sound(121),
-	src: "audio/se/000029fd.wav",
+	src: "/res/undertale/se/000029fd.wav",
 	loop: false,
 	volume: 0.7,
 });
@@ -121,7 +121,7 @@ var se_menu_select = new Howl({
 
 var se_undyne = new Howl({
 	onload: reg_sound(141),
-	src: "audio/se/000029dc.wav",
+	src: "/res/undertale/se/000029dc.wav",
 	loop: false,
 	volume: 0.7,
 });
