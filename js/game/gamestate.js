@@ -201,7 +201,7 @@ var annoyance = 0;
 function endGameText(diff, surv_time) {
 	switch (diff) {
 		case "normal":
-			if (surv_time < 6890) {
+			if (surv_time < 7000) {
 				++annoyance;
 				switch (annoyance) {
 					case 1:
@@ -241,6 +241,14 @@ function endGameText(diff, surv_time) {
 				];
 			}
 		case "hard":
+			if (surv_time < 6000)
+				menu.disableHardMode();
+				return[
+					{ text: "So this is how\n it's going to be?", face: 2 }
+					{ text: "Alright. In that\n case..."}
+					{ text: "I'll push you to\n your limits!", face: 3 }
+					{ text: "There's no going back\n now!", face: 3 }
+				];
 			if (surv_time < 60000)
 				return [
 					{ text: "Is that the best\nyou've got?" },
