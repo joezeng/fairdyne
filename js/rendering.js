@@ -11,6 +11,8 @@ function setup_rendering() {
 	gameplay_stage = new PIXI.Container();
 
 	// add the renderer view element to the DOM
+	renderer.view.style.width = width;
+	renderer.view.style.height = height;
 	document.body.appendChild(renderer.view);
 
 }
