@@ -67,3 +67,25 @@ function onKeyUp(e) {
 
 document.addEventListener("keydown", onKeyDown);
 document.addEventListener("keyup", onKeyUp);
+
+
+
+
+function pollGamepads() {
+  var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+  for (var i = 0; i < gamepads.length; i++) {
+    var gp = gamepads[i];
+    if (gp) {
+
+
+		handleKeyInput("up", gp.buttons[12].pressed || (gp.axes[1] < -0.7) ? "down" : "up");
+		handleKeyInput("down", gp.buttons[13].pressed || (gp.axes[1] > 0.7) ? "down" : "up");
+		handleKeyInput("left", gp.buttons[14].pressed || (gp.axes[0] < -0.7) ? "down" : "up");
+		handleKeyInput("right", gp.buttons[15].pressed || (gp.axes[0] > 0.7) ? "down" : "up");
+		handleKeyInput("A", gp.buttons[0].pressed ? "down" : "up");
+		handleKeyInput("B", gp.buttons[1].pressed ? "down" : "up");
+    }
+  }
+}
+
+setInterval(pollGamepads, 80);
