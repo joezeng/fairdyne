@@ -81,9 +81,39 @@ function SplashScene() {
 
 }
 
+var zeds = [];
+
+SplashScene.prototype.add_zed = function() {
+
+	var press_zed_text = new PIXI.extras.BitmapText(
+		"press zed not two",
+		{ font: "20px Numbers", align: "center"}
+	);
+	press_zed_text.position.set(Math.random() * 520 - 40, Math.random() * 420 + 30);
+	press_zed_text.rotation = (Math.random() * 0.5) - 0.25;
+	press_zed_text.alpha = 1;
+	splash_stage.addChild(press_zed_text);
+
+	zeds.push({
+		time: 1000,
+		text: press_zed_text,
+	})
+
+}
+
 SplashScene.prototype.update = function(delta_ms) {
 
 	// animation steps
+
+	for (var a = 0; a < zeds.length; ) {
+		zeds[a].time -= delta_ms;
+		zeds[a].text.alpha = zeds[a].time / 1000;
+		if (zeds[a].time <= 0) {
+			zeds.splice(a, 1);
+		} else {
+			++a;
+		}
+	}
 
 	if (this.outro == true) {
 		this.outro_time += delta_ms;
@@ -171,6 +201,5 @@ SplashScene.prototype.update = function(delta_ms) {
 	}
 
 }
-
 
 var splash_animation;

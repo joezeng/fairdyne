@@ -9,6 +9,9 @@ var spear_time = 0;
 var pike_interval = 400;
 var pike_time = 0;
 
+var circle_interval = 1200;
+var circle_time = 0;
+
 function switchAttackMode() {
 
 	var borrowed_time = attack_queue[0].time;
@@ -31,6 +34,9 @@ function switchAttackMode() {
 			for (var a = 0; a < pikes.length; ++a) {
 				pikes[a].removed = true;
 			}
+			for (var a = 0; a < circle_spears.length; ++a) {
+				circle_spears[a].removed = true;
+			}
 			for (var a = 0; a < arrows.length; ++a) {
 				arrows[a].sprite.visible = true;
 			}
@@ -51,12 +57,25 @@ function switchAttackMode() {
 			break;
 		case "pike":
 			pike_interval = current_attack.interval;
-			undyne.opacity_g.alpha = 0;
+			undyne.opacity_g.alpha = 0.5;
 			box.dest_left = 288;
 			box.dest_right = 352;
 			box.dest_top = 280;
 			box.dest_bottom = 360;
 			pike_time = pike_interval + borrowed_time;
+			for (var a = 0; a < arrows.length; ++a) {
+				arrows[a].sprite.visible = false;
+			}
+			heart.setColour("red");
+			break;
+		case "circlespear":
+			circle_interval = current_attack.interval;
+			undyne.opacity_g.alpha = 0.5;
+			box.dest_left = 40;
+			box.dest_right = 600;
+			box.dest_top = 160;
+			box.dest_bottom = 400;
+			circle_time = circle_interval + borrowed_time;
 			for (var a = 0; a < arrows.length; ++a) {
 				arrows[a].sprite.visible = false;
 			}
@@ -100,6 +119,9 @@ function addNextAttack (attack) {
 	if (new_attack.type == "pike") {
 		attack_info.interval = new_attack.pike_interval;
 		attack_info.down = new_attack.down;
+	}
+	if (new_attack.type == "circlespear") {
+		attack_info.interval = new_attack.spear_interval;
 	}
 	if (new_attack.buffer_time)
 		attack_info.buffer_time = new_attack.buffer_time;

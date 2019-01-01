@@ -7,7 +7,6 @@ fonts_loader
 	.add("numbers", "fonts/numbers.fnt")
 	.add("speechbubble", "fonts/speechbubble.fnt")
 	.on("complete", function(loader, resources) {
-		console.log(resources);
 		process_fonts(resources);
 	})
 ;

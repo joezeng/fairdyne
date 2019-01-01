@@ -492,5 +492,58 @@ var g_ag8 = {
 		{ direction: "R", turntype: 0, target_time: 6.2, speed: 400 },
 		{ direction: "+2", turntype: 3, target_time: 6.3, speed: 400 },
 	],
-	next_sets: ["g_sp3"],
+	next_sets: ["g_ca1"],
+};
+
+var g_ca1 = {
+	type: "circlespear",
+	next_time: 9.6,
+	buffer_time: 0.8,
+	spear_interval: 1200,
+	spear_count: 7,
+	next_sets: ["g_ag9"],
+};
+
+var g_ag9 = {
+	type: "arrow",
+	next_time: 9.6,
+	arrows: [
+		{ direction: "R", turntype: 0, target_time: 0.0, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 0.2, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 0.4, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 0.6, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 0.8, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 1.0, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 1.2, speed: 600 },
+
+		{ direction: "R", turntype: 3, target_time: 1.6, speed: 400 },
+		{ direction: "+2", turntype: 3, target_time: 1.8, speed: 400 },
+		{ direction: "+2", turntype: 3, target_time: 2.0, speed: 400 },
+		{ direction: "+2", turntype: 3, target_time: 2.2, speed: 400 },
+		{ direction: "+2", turntype: 3, target_time: 2.4, speed: 400 },
+	
+		{ direction: "R", turntype: 0, target_time: 3.0, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 3.6, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 4.2, speed: 600 },
+
+		{ direction: "R", turntype: 0, target_time: 4.8, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 5.0, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 5.2, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 5.4, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 5.6, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 5.8, speed: 600 },
+		{ direction: "R", turntype: 0, target_time: 6.0, speed: 600 },
+
+		{ direction: "R", turntype: 3, target_time: 6.4, speed: 400 },
+		{ direction: "+2", turntype: 3, target_time: 6.6, speed: 400 },
+		{ direction: "+2", turntype: 3, target_time: 6.8, speed: 400 },
+		{ direction: "+2", turntype: 3, target_time: 7.0, speed: 400 },
+		{ direction: "+2", turntype: 3, target_time: 7.2, speed: 400 },
+		{ direction: "R", turntype: 0, target_time: 7.6, speed: 400 },
+		{ direction: "R", turntype: 0, target_time: 8.0, speed: 400 },
+		{ direction: "0", turntype: 0, target_time: 8.3, speed: 300 },
+		{ direction: "+1", turntype: 0, target_time: 8.35, speed: 300 },
+		{ direction: "+1", turntype: 0, target_time: 8.4, speed: 300 },
+	],
+	next_sets: ["g_ca1"],
 };

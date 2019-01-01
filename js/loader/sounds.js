@@ -2,7 +2,9 @@ var sounds_loaded = {
 	10: false,
 	11: false,
 	12: false,
+	20: false,
 	101: false,
+	102: false,
 	111: false,
 	112: false,
 	113: false,
@@ -13,6 +15,7 @@ var sounds_loaded = {
 	121: false,
 	141: false,
 }
+
 // sounds that need to load before starting the game
 
 function reg_sound(n) {
@@ -49,11 +52,32 @@ var bgm_undyne2 = new Howl({
 });
 
 
+var bgm_aprilfools = new Howl({
+	onload: reg_sound(20),
+	src: "audio/bgm/fork1.wav",
+	loop: false,
+	onend: () => {bgm_aprilfools2.play();},
+	volume: 0.7,
+});
+
+var bgm_aprilfools2 = new Howl({
+	onload: reg_sound(21),
+	src: "audio/bgm/fork2.wav",
+	loop: true,
+	volume: 0.7,
+});
 
 
 var se_text_advance = new Howl({
 	onload: reg_sound(101),
 	src: "audio/se/000029ec.wav",
+	loop: false,
+	volume: 0.7,
+});
+
+var se_press_zed = new Howl({
+	onload: reg_sound(102),
+	src: "audio/se/000029ab.wav",
 	loop: false,
 	volume: 0.7,
 });
