@@ -179,6 +179,8 @@ GameState.prototype.endGame = function() {
 		gameplay_stage.removeChild(pikes[a].sprite);
 	for (var a = 0; a < circle_spears.length; ++a)
 		gameplay_stage.removeChild(circle_spears[a].sprite);
+	for (var a = 0; a < swarm_spears.length; ++a)
+		gameplay_stage.removeChild(swarm_spears[a].sprite);
 
 	if (box.top < 240 - SHIELD_DISTANCE) box.top = 240 - SHIELD_DISTANCE;
 
@@ -339,9 +341,18 @@ GameState.prototype.update = function(delta_ms) {
 			}
 		}
 
+		// swarm.update(delta_ms)
+		for (var a = 0; a < swarm_spears.length; ++a) {
+			swarm_spears[a].update(delta_ms);
+			if (swarm_spears[a].removed) {
+				gameplay_stage.removeChild(swarm_spears[a].sprite);
+				swarm_spears.splice(a, 1);
+			}
+		}
+
 		var current_attack = attack_queue[0];
 		current_attack.time -= delta_ms / 1000;
-
+		
 		if (current_attack.type == "spear") {
 			spear_time -= delta_ms;
 			if (spear_time <= 0) {
@@ -358,7 +369,14 @@ GameState.prototype.update = function(delta_ms) {
 			circle_time -= delta_ms;
 			if (circle_time <= 0) {
 				circle_time += circle_interval;
-				addNewCircleSpear(7);
+				addNewCircleSpear(circle_count);
+			}
+		} else if (current_attack.type == "swarmspear") {
+			swarm_time -= delta_ms;
+			if (swarm_time <= 0) {
+				swarm_time += swarm_interval;
+				swarm_initial_angle += Math.random() * 0.8 - 0.5;
+				addNewSwarmSpear(6, swarm_interval, swarm_initial_angle);
 			}
 		}
 

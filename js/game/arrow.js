@@ -10,6 +10,15 @@ function Arrow (props) {
 
 	this.turntype = props.turntype || 0;
 	// 0 = straight, 1 = turn right, 2 = u-turn right, 3 = u-turn left, 4 = turn left
+	if (this.turntype == -1) {
+		var rand_dir = Math.random() * 4;
+		this.turntype = Math.floor(rand_dir < 2.5 ? rand_dir : rand_dir + 1);
+	}
+	if (this.turntype == -2) {
+		var rand_dir = Math.random() * 3;
+		this.turntype = Math.floor(rand_dir < 2 ? rand_dir : 4);
+	}
+	// -1 = random, -2 = random non-half
 
 	this.target_time = props.target_time || 0;
 	// time when the shield destroys it.
